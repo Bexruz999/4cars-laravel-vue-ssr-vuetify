@@ -10,7 +10,7 @@ const icons = ['mdi-snowflake', 'mdi-leaf', 'mdi-fire', 'mdi-water',];
 const modelValue = ref(null);
 const diametrs = ['R12', 'R13', 'R14', 'R15', 'R16', 'R17', 'R18', 'R19', 'R20', 'R21', 'R22']
 const season = function (val) {return this.icons[val]}
-
+const value = ref([100, 400]);
 </script>
 
 <template>
@@ -101,7 +101,13 @@ const season = function (val) {return this.icons[val]}
         <div class="products">
             <div class="container-lg">
                 <div class="row">
-                    <div class="col-lg-3 col-12 products-filter">Фильтр</div>
+                    <div class="col-lg-3 col-12 products-filter">
+
+                        <v-card-title>Диапазон цен</v-card-title>
+                        <br>
+                        <v-range-slider v-model="value" step="10" min="100" max="1000" thumb-label="always" color="blue-darken-2">
+                        </v-range-slider>
+                    </div>
                     <div class="col-lg-9 col-12 products-container d-flex flex-wrap justify-content-center">
                         <div class="products-item">
                             <div class="products-item__img">
