@@ -19792,12 +19792,18 @@ var vuetify = (0,vuetify__WEBPACK_IMPORTED_MODULE_8__.createVuetify)({
   components: vuetify_components__WEBPACK_IMPORTED_MODULE_9__,
   directives: vuetify_directives__WEBPACK_IMPORTED_MODULE_10__
 });
-var UserDetails = function UserDetails() {
-  return __webpack_require__.e(/*! import() */ "resources_js_views_UserDetails_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/UserDetails.vue */ "./resources/js/views/UserDetails.vue"));
+var Home = function Home() {
+  return __webpack_require__.e(/*! import() */ "resources_js_views_Home_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/Home.vue */ "./resources/js/views/Home.vue"));
+};
+var Catalog = function Catalog() {
+  return __webpack_require__.e(/*! import() */ "resources_js_views_Catalog_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/Catalog.vue */ "./resources/js/views/Catalog.vue"));
 };
 var routes = [{
   path: '',
-  component: UserDetails
+  component: Home
+}, {
+  path: '/tires',
+  component: Catalog
 }];
 var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_11__.createRouter)({
   // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
@@ -19809,13 +19815,27 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({}).use(vuetify).use(ro
 var contentName = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('collback');
 var contentData = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
 function updateContent(url) {
-  var content = document.getElementById('content');
   window.axios.get(url).then(function (response) {
-    console.log(response.data);
-    content.innerHTML = response.data;
-    /*contentData.value = response.data;
-    contentName.value = 'content';*/
+    changeContent(response);
   })["catch"](function (error) {});
+}
+function changeContent(response) {
+  var content = document.getElementById('content');
+  var title = document.getElementById('title');
+  var intro = document.getElementById('intro');
+  var data = response.data;
+  var a = 'url(' + data['page']['image'] + ')';
+  console.log(a);
+  content.innerHTML = data['view'];
+  title.innerHTML = data['page']['title'];
+  if (data['page']['slug'] === '/') {
+    intro.classList.remove('intro');
+    intro.classList.add('introMain');
+  } else {
+    intro.classList.remove('introMain');
+    intro.classList.add('intro');
+  }
+  intro.style.backgroundImage = a;
 }
 app.provide('content', {
   updateContent: updateContent,
@@ -84579,7 +84599,7 @@ function useRender(render) {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if (chunkId === "resources_js_views_UserDetails_vue") return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_Home_vue":1,"resources_js_views_Catalog_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

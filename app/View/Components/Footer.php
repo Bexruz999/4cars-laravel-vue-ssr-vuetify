@@ -9,9 +9,8 @@ class Footer extends Component
 {
     public function render()
     {
-        $categories = Group::inRandomOrder()->take(7)->get();
 
 
-        return view('components.footer', ['categories' => $categories]);
+        return view('components.footer');
     }
 }

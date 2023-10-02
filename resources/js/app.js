@@ -20,8 +20,12 @@ const vuetify = createVuetify({
     directives,
 })
 
-const UserDetails = () => import('./views/UserDetails.vue')
-const routes = [{ path: '', component: UserDetails }];
+const Home = () => import('./views/Home.vue');
+const Catalog = () => import('./views/Catalog.vue');
+const routes = [
+    { path: '', component: Home },
+    { path: '/tires', component: Catalog }
+];
 
 const router = createRouter({
     // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
@@ -33,15 +37,30 @@ const app = createApp({}).use(vuetify).use(router);
 const contentName = ref('collback');
 const contentData = ref('');
 function updateContent(url) {
-    const content = document.getElementById('content');
     window.axios.get(url)
         .then((response) => {
-            console.log(response.data);
-            content.innerHTML = response.data;
-            /*contentData.value = response.data;
-            contentName.value = 'content';*/
+            changeContent(response)
         })
         .catch( (error) => {});
+}
+
+function changeContent(response) {
+    const content = document.getElementById('content');
+    const title = document.getElementById('title');
+    const intro = document.getElementById('intro');
+    let data = response.data;
+    let a = 'url(' + data['page']['image'] + ')';
+    console.log(a);
+    content.innerHTML = data['view'];
+    title.innerHTML = data['page']['title'];
+    if (data['page']['slug'] === '/'){
+        intro.classList.remove('intro');
+        intro.classList.add('introMain');
+    } else {
+        intro.classList.remove('introMain');
+        intro.classList.add('intro');
+    }
+    intro.style.backgroundImage = a;
 }
 
 app.provide('content', {updateContent, contentName, contentData});

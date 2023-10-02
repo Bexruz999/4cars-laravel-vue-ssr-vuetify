@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::match(['GET', 'POST'], '/', [HomeController::class, 'index']);
-Route::match(['GET', 'POST'], '/tires', [HomeController::class, 'test']);
+Route::match(['GET', 'POST'], '/tires', [CatalogController::class, 'tires']);
 
 Route::group(['prefix' => 'admin'], function () {Voyager::routes();});

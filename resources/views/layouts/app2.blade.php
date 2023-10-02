@@ -6,13 +6,14 @@
     $uri = !empty(Illuminate\Support\Facades\Route::current()) ? Illuminate\Support\Facades\Route::current()->uri : false;
     $urls = ['about', 'catalog', 'news-page', 'contact-page', 'review-page', '/'];*/
     $menu = \App\Models\SiteMenu::where('active', 1)->get();
+    $page = \App\Models\Page::where('slug', request()->path())->first();
 @endphp
 <x-head></x-head>
 
 
 <body>
 <div class="dyn-content">
-    <x-header :menus="$menu"></x-header>
+    <x-header :menus="$menu" :page="$page"></x-header>
     <router-view></router-view>
     <div id="content">
         @yield('content')

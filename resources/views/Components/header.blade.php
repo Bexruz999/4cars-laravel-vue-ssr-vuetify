@@ -1,11 +1,15 @@
-<div class="introMain">
+<div id="intro" class="{{ request()->path() === '/' ? 'introMain' : 'intro' }}" style="background-image: url({{ Voyager::image($page->image) }})">
     <div class="container">
         <header class="header">
+
             <div class="row justify-content-between">
+
                 <mymenu v-slot="scope">
                     <router-link to="/" @click.prevent="scope.btn('/')" class="col-xl-2 header-logo"><img src="{{ asset('assets/images/logo.svg') }}" alt="logo"/></router-link>
                 </mymenu>
+
                 <div class="col-xl-7 col-12 header-contact">
+
                     <div class="header-contact__item">
                         <img src="{{ asset('assets/images/icons/phone-icon.png') }}" alt=""/>
                         <div class="header-contact__item-phones">
@@ -13,13 +17,15 @@
                             <a href="tel:+77064133556">+7 (706) 413-35-56</a>
                         </div>
                     </div>
+
                     <div class="header-contact__item">
                         <img src="{{ asset('assets/images/icons/address-icon.png') }}" alt="г. Алматы ул. Казыбаева, 270а"/>
-                        <a href="https://2gis.kz/almaty/firm/70000001040222127/76.914359%2C43.305155?m=76.91509%2C43.305034%2F18.43%2Fr%2F3.96"
-                           target="_blank">г. Алматы ул. <br/>Казыбаева, 270а</a>
+                        <a href="https://2gis.kz/almaty/firm/70000001040222127/76.914359%2C43.305155?m=76.91509%2C43.305034%2F18.43%2Fr%2F3.96" target="_blank">г. Алматы ул. <br/>Казыбаева, 270а</a>
                     </div>
+
                     <collback title="Заказать звонок" btn_class="header-contact__btn"></collback>
                 </div>
+
                 <div class="col-xl-3 col-12 header-buttons">
                     <a href="#">
                         <img src="{{ asset('assets/images/icons/photo-icon.png') }}" alt=""/>
@@ -37,6 +43,7 @@
                     </a>
                 </div>
             </div>
+
             <div class="row justify-content-around">
                 <form action="#" class="col-xl-7 col-12 header-search">
                     <search placeholder="Найти"></search>
@@ -45,7 +52,9 @@
                     </button>
                 </form>
             </div>
+
             <mymenu v-slot="scope">
+
                 <div class="row justify-content-center">
                     <nav class="col-lg-10 header-nav">
                         @foreach($menus as $menu)
@@ -53,7 +62,8 @@
                         @endforeach
                     </nav>
                 </div>
-<!--                <a href="pages/products.html">Диски</a>
+
+<!--
                 <a href="pages/payment.html">Оплата и доставка</a>
                 <a href="pages/discount.html">Акции и скидки</a>
                 <a href="pages/contacts.html">Контакты</a>
@@ -127,8 +137,6 @@
         </div>
 
 
-        <h1 class="introMain-title">
-            Интернет-магазин <br/> шин и дисков
-        </h1>
+        <h1 id="title" class="introMain-title">{!! $page->title !!}</h1>
     </div>
 </div>
