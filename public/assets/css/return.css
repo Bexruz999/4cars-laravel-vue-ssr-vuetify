@@ -1,0 +1,46 @@
+.return {
+  padding: 50px 0;
+}
+.return-title {
+  font-size: 24px;
+  font-weight: 600;
+}
+.return p {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 1400px) {
+  .return {
+    padding: 50px 0;
+  }
+  .return-title {
+    font-size: 26px;
+  }
+  .return p {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .return {
+    padding: 40px 0;
+  }
+  .return-title {
+    font-size: 22px;
+  }
+  .return p {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .return {
+    padding: 30px 0;
+  }
+  .return-title {
+    font-size: 18px;
+  }
+  .return p {
+    font-size: 14px;
+  }
+}
+/*# sourceMappingURL=return.css.map */

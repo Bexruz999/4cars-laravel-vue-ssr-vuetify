@@ -1,0 +1,144 @@
+@charset "UTF-8";
+@import url(../css/intro.css);
+@import url(../css/header.css);
+@import url(../css/selection.css);
+@import url(../css/form.css);
+@import url(../css/footer.css);
+@import url(../css/products.css);
+@import url(../css/payment.css);
+@import url(../css/discount.css);
+@import url(../css/contacts.css);
+@import url(../css/tireService.css);
+@import url(../css/siteMap.css);
+@import url(../css/blog.css);
+@import url(../css/about.css);
+@import url(../css/return.css);
+@import url(../css/cabinet.css);
+@import url(../css/product.css);
+@import url(../css/main-page/partners.css);
+@import url(../css/main-page/introHit.css);
+@import url(../css/main-page/introAbout.css);
+@import url(../css/main-page/introBlog.css);
+*, html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+* .container, html .container {
+  max-width: 1520px;
+}
+
+a {
+  text-decoration: none;
+}
+
+input:focus {
+  outline: 0;
+}
+
+body {
+  font-family: "Montserrat Alternates", sans-serif;
+  position: relative;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #1A6EC1;
+}
+
+html::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+html::-webkit-scrollbar {
+  width: 15px;
+}
+
+.black-title {
+  font-size: 52px;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.decor-1 {
+  background-image: url(../images/decor/decor-1.png);
+  background-repeat: no-repeat;
+  background-size: 20%;
+  background-position: left center;
+}
+
+.decor-2 {
+  background-image: url(../images/decor/decor-2.png);
+  background-repeat: no-repeat;
+  background-size: 10%;
+  background-position: right center;
+}
+
+@media screen and (max-width: 1400px) {
+  .black-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #000;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .black-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .black-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+.rating-result {
+  width: 265px;
+  display: flex;
+  align-items: baseline;
+}
+
+.rating-result span {
+  padding: 0;
+  font-size: 32px;
+  margin: 0 3px;
+  color: lightgrey;
+  text-shadow: 1px 1px #1A6EC1;
+}
+
+.rating-result > span:before {
+  content: "★";
+}
+
+.rating-result > span.active {
+  color: #1A6EC1;
+  text-shadow: 1px 1px #1A6EC1;
+}
+
+@media screen and (max-width: 576px) {
+  .rating-result span {
+    font-size: 26px;
+  }
+}
+.search-result {
+  padding: 50px 0 50px;
+}
+.search-result p {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.no_scroll {
+  overflow: hidden;
+}
+/*# sourceMappingURL=main.css.map */

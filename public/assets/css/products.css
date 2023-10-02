@@ -1,0 +1,76 @@
+.products-filter {
+  background-color: #ccc;
+}
+.products-container .products-item {
+  margin: 5px;
+  max-width: 230px;
+  width: 100%;
+}
+.products-container .products-item__img {
+  padding: 10px 10px;
+  text-align: center;
+  margin-bottom: 5px;
+  background-color: #fff;
+}
+.products-container .products-item__content {
+  height: 210px;
+  background-color: #1A6EC1;
+  padding: 30px 8px 2px;
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
+}
+.products-container .products-item__content-title {
+  font-size: 12px;
+  text-align: left;
+  margin-bottom: 5px;
+}
+.products-container .products-item__content-text {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+.products-container .products-item__content-price {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center !important;
+  margin-bottom: 10px;
+}
+.products-container .products-item__content-buy {
+  text-align: center;
+  background-color: #fff;
+  color: #1A6EC1;
+  padding: 4px 6px;
+  border-radius: 2px;
+  transition: 0.2s ease-in-out;
+}
+.products-container .products-item__content-buy:hover {
+  background-color: #e6e6e6;
+}
+.products-container .products-item__content-korzina {
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 2px;
+  color: #fff;
+  padding: 4px 6px;
+  transition: 0.2s ease-in-out;
+}
+.products-container .products-item__content-korzina:hover {
+  background-color: #fff;
+  color: #000;
+}
+.products-container .products-item__content-rasrochka {
+  display: block;
+  margin-top: 10px;
+  padding: 4px 6px;
+  background-color: #FF0000;
+  color: #fff;
+  transition: 0.2s ease-in-out;
+  border-radius: 5px;
+}
+.products-container .products-item__content-rasrochka:hover {
+  background-color: #cc0000;
+}
+/*# sourceMappingURL=products.css.map */

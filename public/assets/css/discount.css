@@ -1,0 +1,65 @@
+.discount {
+  padding: 50px 0 20px;
+}
+.discount-title {
+  font-size: 36px;
+  font-weight: 700;
+}
+.discount-subtitle {
+  font-size: 20px;
+}
+.discount-img {
+  width: 100%;
+  height: auto;
+}
+.discount-item {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 1400px) {
+  .discount-title {
+    font-size: 34px;
+  }
+  .discount-subtitle {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .discount-title {
+    font-size: 32px;
+  }
+  .discount-subtitle {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .discount-title {
+    font-size: 30px;
+  }
+  .discount-subtitle {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+  .discount-img {
+    order: 3;
+  }
+}
+@media screen and (max-width: 576px) {
+  .discount-title {
+    font-size: 28px;
+  }
+  .discount-subtitle {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .discount-title {
+    font-size: 26px;
+  }
+  .discount-subtitle {
+    font-size: 14px;
+  }
+}
+/*# sourceMappingURL=discount.css.map */

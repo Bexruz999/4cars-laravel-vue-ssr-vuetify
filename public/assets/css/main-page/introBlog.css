@@ -1,0 +1,221 @@
+.introBlog {
+  padding: 30px 0;
+}
+.introBlog-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.introBlog-title__date {
+  font-size: 36px;
+  font-weight: 400;
+  color: #000;
+  padding-right: 25px;
+  width: 100%;
+}
+.introBlog-title__decor {
+  height: 3px;
+  width: 100%;
+  background-color: #1A6EC1;
+}
+.introBlog-cart {
+  margin: 20px auto;
+  width: 617px;
+}
+
+.introBlog-cart img {
+    max-width: 100%;
+}
+
+.introBlog-cart__inner {
+  border: 1px solid rgba(0, 0, 0, 0.3137254902);
+  border-radius: 6px;
+}
+.introBlog-cart__img {
+  margin-bottom: 15px;
+  width: 100%;
+}
+.introBlog-cart__text {
+  padding: 10px;
+  font-size: 26px;
+  font-weight: 400;
+}
+.introBlog-cart__btn {
+  background-color: #1A6EC1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 400;
+  transition: 0.2s ease-in-out;
+}
+.introBlog-cart__btn img {
+  width: 44px;
+  height: 34px;
+  margin-right: 20px;
+}
+.introBlog-cart__btn:hover {
+  background-color: #145494;
+  color: #fff;
+}
+
+@media screen and (max-width: 1400px) {
+  .introBlog-title {
+    margin-bottom: 20px;
+  }
+  .introBlog-title__date {
+    font-size: 20px;
+    font-weight: 400;
+    color: #000;
+    padding-right: 25px;
+    width: 100%;
+  }
+  .introBlog-title__decor {
+    height: 2px;
+  }
+  .introBlog-cart {
+    margin: 20px auto;
+    width: 517px;
+  }
+  .introBlog-cart__inner {
+    border: 1px solid rgba(0, 0, 0, 0.3137254902);
+    border-radius: 6px;
+  }
+  .introBlog-cart__img {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  .introBlog-cart__text {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .introBlog-cart__btn {
+    background-color: #1A6EC1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    transition: 0.2s ease-in-out;
+  }
+  .introBlog-cart__btn img {
+    width: 44px;
+    height: 34px;
+    margin-right: 20px;
+  }
+  .introBlog-cart__btn:hover {
+    background-color: #145494;
+    color: #fff;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .introBlog-title {
+    margin-bottom: 20px;
+  }
+  .introBlog-title__date {
+    font-size: 20px;
+    font-weight: 400;
+    color: #000;
+    padding-right: 25px;
+    width: 100%;
+  }
+  .introBlog-title__decor {
+    height: 2px;
+  }
+  .introBlog-cart {
+    margin: 20px auto;
+    width: 420px;
+  }
+  .introBlog-cart__inner {
+    border: 1px solid rgba(0, 0, 0, 0.3137254902);
+    border-radius: 6px;
+  }
+  .introBlog-cart__img {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  .introBlog-cart__text {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .introBlog-cart__btn {
+    background-color: #1A6EC1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    transition: 0.2s ease-in-out;
+  }
+  .introBlog-cart__btn img {
+    width: 44px;
+    height: 34px;
+    margin-right: 20px;
+  }
+  .introBlog-cart__btn:hover {
+    background-color: #145494;
+    color: #fff;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .introBlog-title {
+    margin-bottom: 20px;
+  }
+  .introBlog-title__date {
+    font-size: 20px;
+    font-weight: 400;
+    color: #000;
+    padding-right: 25px;
+    width: 100%;
+  }
+  .introBlog-title__decor {
+    height: 2px;
+  }
+  .introBlog-cart {
+    margin: 20px auto;
+    width: 300px;
+  }
+  .introBlog-cart__inner {
+    border: 1px solid rgba(0, 0, 0, 0.3137254902);
+    border-radius: 6px;
+  }
+  .introBlog-cart__img {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  .introBlog-cart__text {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .introBlog-cart__btn {
+    background-color: #1A6EC1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    transition: 0.2s ease-in-out;
+  }
+  .introBlog-cart__btn img {
+    width: 44px;
+    height: 34px;
+    margin-right: 20px;
+  }
+  .introBlog-cart__btn:hover {
+    background-color: #145494;
+    color: #fff;
+  }
+}
+/*# sourceMappingURL=introBlog.css.map */

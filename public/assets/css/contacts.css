@@ -1,0 +1,128 @@
+.contacts {
+  text-align: center;
+  padding: 40px 0 30px;
+}
+.contacts-container {
+  padding: 20px 0;
+  min-height: 500px;
+  background-image: url("../images/contact-map.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.contacts-container__item {
+  color: #000;
+  text-decoration: none;
+  min-height: 250px;
+  max-width: 270px;
+  width: 100%;
+  background-color: #EBF2F8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease-in-out;
+  padding: 8px;
+}
+.contacts-container__item a {
+  color: #000;
+}
+.contacts-container__item img {
+  margin-bottom: 10px;
+}
+.contacts-container__item h6 {
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+.contacts-container__item b {
+  font-weight: 600;
+}
+.contacts-container__item:hover {
+  background-color: #d8e6f1;
+  color: #000;
+}
+
+.requisites {
+  text-align: center;
+}
+.requisites-title {
+  color: #1A6EC1;
+  font-size: 40px;
+  font-weight: 600;
+}
+.requisites p {
+  font-size: 20px;
+}
+
+@media screen and (max-width: 1400px) {
+  .contacts {
+    text-align: center;
+    padding: 30px 0 20px;
+  }
+  .contacts-container {
+    padding: 10px 0;
+    min-height: 300px;
+  }
+  .contacts-container__item {
+    color: #000;
+    text-decoration: none;
+    min-height: 200px;
+    max-width: 250px;
+    width: 100%;
+    padding: 8px;
+  }
+  .contacts-container__item a {
+    color: #000;
+  }
+  .contacts-container__item img {
+    margin-bottom: 10px;
+  }
+  .contacts-container__item h6 {
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .contacts-container__item b {
+    font-weight: 600;
+  }
+  .contacts-container__item:hover {
+    background-color: #d8e6f1;
+    color: #000;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .requisites-title {
+    font-size: 52px;
+  }
+  .requisites p {
+    font-size: 24px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .requisites-title {
+    font-size: 48px;
+  }
+  .requisites p {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .requisites-title {
+    font-size: 38px;
+  }
+  .requisites p {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .requisites-title {
+    font-size: 32px;
+  }
+  .requisites p {
+    font-size: 15px;
+  }
+}
+/*# sourceMappingURL=contacts.css.map */

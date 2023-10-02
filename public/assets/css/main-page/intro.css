@@ -1,0 +1,15 @@
+.intro {
+  padding: 20px 0;
+  min-height: 100vh;
+  background-image: url("../../images/intro-slider/intro-slider-1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.intro-title {
+  color: #fff;
+  font-size: 89px;
+  font-weight: 700;
+  margin-top: 50px;
+}
+/*# sourceMappingURL=intro.css.map */

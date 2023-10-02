@@ -1,0 +1,60 @@
+.siteMap {
+  padding: 50px 0 40px;
+}
+.siteMap h2 {
+  color: #1A6EC1;
+}
+.siteMap-links {
+  text-align: center;
+  padding: 30px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0px 0px 10px 0px rgba(34, 60, 80, 0.2);
+}
+.siteMap-links a {
+  color: #000;
+  text-decoration: underline;
+  font-size: 36px;
+  font-weight: 500;
+  padding: 40px;
+}
+
+@media screen and (max-width: 1400px) {
+  .siteMap-links {
+    padding: 30px 50px;
+  }
+  .siteMap-links a {
+    font-size: 24px;
+    padding: 30px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .siteMap-links {
+    padding: 30px 50px;
+  }
+  .siteMap-links a {
+    font-size: 20px;
+    padding: 30px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .siteMap-links {
+    padding: 20px 40px;
+  }
+  .siteMap-links a {
+    font-size: 18px;
+    padding: 26px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .siteMap-links {
+    padding: 10px 30px;
+  }
+  .siteMap-links a {
+    font-size: 16px;
+    padding: 20px;
+  }
+}
+/*# sourceMappingURL=siteMap.css.map */
