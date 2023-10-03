@@ -54,11 +54,11 @@ function changeContent(response) {
     content.innerHTML = data['view'];
     title.innerHTML = data['page']['title'];
     if (data['page']['slug'] === '/'){
-        intro.classList.remove('intro');
+        intro.classList.remove('introPages');
         intro.classList.add('introMain');
     } else {
         intro.classList.remove('introMain');
-        intro.classList.add('intro');
+        intro.classList.add('introPages');
     }
     intro.style.backgroundImage = a;
 }

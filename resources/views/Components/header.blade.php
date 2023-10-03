@@ -1,4 +1,4 @@
-<div id="intro" class="{{ request()->path() === '/' ? 'introMain' : 'intro' }}" style="background-image: url({{ Voyager::image($page->image) }})">
+<div id="intro" class="{{ request()->path() === '/' ? 'introMain' : 'introPages' }}" style="background-image: url({{ Voyager::image($page->image) }})">
     <div class="container">
         <header class="header">
 

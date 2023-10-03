@@ -1,7 +1,8 @@
 .products-filter {
     border: 3px solid #1A6EC1;
     border-radius: 15px;
-    padding: 15px;
+    padding: 10px 20px;
+    background-color: #fff;
 }
 .products-container .products-item {
   margin: 5px;
