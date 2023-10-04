@@ -12,11 +12,11 @@
                     <h6 class="footer-links__title">
                         Информация
                     </h6>
-                    <a href="#">Карта сайта</a>
-                    <a href="#">Блог</a>
-                    <a href="#">Новинки</a>
-                    <a href="#">Корзина</a>
-                    <a href="#">Список сравнения</a>
+                    <mymenu v-slot="scope">
+                        @foreach($menus->where('position', 'Информация') as $menu)
+                            <router-link to="{{ $menu->slug }}" @click.prevent="scope.btn('{{ $menu->slug }}')">{{ $menu->title }}</router-link>
+                        @endforeach
+                    </mymenu>
                 </div>
             </div>
             <div class="col-sm-3 col-6 justify-content-center d-flex">
@@ -24,10 +24,11 @@
                     <h6 class="footer-links__title">
                         Полезное
                     </h6>
-                    <a href="#">Контакты</a>
-                    <a href="#">Шиномонтаж</a>
-                    <a href="#">Возврат и обмен </a>
-                    <a href="#">Оплата и доставка</a>
+                    <mymenu v-slot="scope">
+                        @foreach($menus->where('position', 'Полезное') as $menu)
+                            <router-link to="{{ $menu->slug }}" @click.prevent="scope.btn('{{ $menu->slug }}')">{{ $menu->title }}</router-link>
+                        @endforeach
+                    </mymenu>
                 </div>
             </div>
             <div class="col-sm-3 col-6 justify-content-center d-flex">
@@ -35,11 +36,11 @@
                     <h6 class="footer-links__title">
                         Сервис
                     </h6>
-                    <a href="#">Условия кредита <br> и
-                        рассрочки</a>
-                    <a href="#">Публичная оферта</a>
-                    <a href="#">О компании</a>
-                    <a href="#">Список желаний</a>
+                    <mymenu v-slot="scope">
+                        @foreach($menus->where('position', 'Сервис') as $menu)
+                            <router-link to="{{ $menu->slug }}" @click.prevent="scope.btn('{{ $menu->slug }}')">{{ $menu->title }}</router-link>
+                        @endforeach
+                    </mymenu>
                 </div>
             </div>
             <div class="col-sm-3 col-6 justify-content-center d-flex">
@@ -47,19 +48,17 @@
                     <h6 class="footer-links__title">
                         Личный кабинет
                     </h6>
-                    <a href="#">Личный кабинет</a>
-                    <a href="#">Заказы</a>
-                    <a href="#">Адреса</a>
-                    <a href="#">Последние</a>
-                    <a href="#">Шиномонтаж</a>
-                    <a href="#">Возврат и обмен</a>
+                    <mymenu v-slot="scope">
+                        @foreach($menus->where('position', 'Личный кабинет') as $menu)
+                            <router-link to="{{ $menu->slug }}" @click.prevent="scope.btn('{{ $menu->slug }}')">{{ $menu->title }}</router-link>
+                        @endforeach
+                    </mymenu>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /container -->
-    <a href="#">
-        <img class="footer-logo" src="{{ asset('assets/images/logo.svg') }}" alt="">
-    </a>
+    <mymenu v-slot="scope">
+        <router-link to="/" @click.prevent="scope.btn('/')"><img class="footer-logo" src="{{ asset('assets/images/logo.svg') }}" alt="logo"/></router-link>
+    </mymenu>
 
 </div>

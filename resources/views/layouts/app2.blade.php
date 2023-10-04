@@ -13,14 +13,14 @@
 
 <body>
 <div class="dyn-content">
-    <x-header :menus="$menu" :page="$page"></x-header>
+    <x-header :menus="$menu->where('position', 'main')" :page="$page"></x-header>
     <router-view></router-view>
     <div id="content">
         @yield('content')
     </div>
+    <x-form></x-form>
+    <x-footer :menus="$menu" ></x-footer>
 </div>
-<x-form></x-form>
-<x-footer></x-footer>
 <x-scripts></x-scripts>
 </body>
 </html>

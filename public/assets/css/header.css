@@ -80,6 +80,7 @@
   max-width: 100px;
 }
 .header-buttons a img {
+    width: 42px;
   margin-bottom: 5px;
 }
 .header-buttons__count {
