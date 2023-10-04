@@ -63,11 +63,6 @@
                     </nav>
                 </div>
 
-<!--
-                <a href="pages/payment.html">Оплата и доставка</a>
-                <a href="pages/discount.html">Акции и скидки</a>
-                <a href="pages/contacts.html">Контакты</a>
-                <a href="pages/tireService.html">Шиномонтаж</a>-->
             </mymenu>
 
         </header>
@@ -138,5 +133,10 @@
 
 
         <h1 id="title" class="introMain-title">{!! $page->title !!}</h1>
+        <div id="s404" style="display: none">
+            <a class="intro-404-link text-lg-center" href="../index.html">Вернуться на главную страницу</a>
+            <img class="intro-404-img" src="/assets/images/404.png" alt="">
+        </div>
     </div>
 </div>
+

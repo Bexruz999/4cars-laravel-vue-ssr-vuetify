@@ -19,9 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::match(['GET', 'POST'], '/', [HomeController::class, 'index']);
 Route::match(['GET', 'POST'], '/tires', [CatalogController::class, 'tires']);
 Route::match(['GET', 'POST'], '/rims', [CatalogController::class, 'tires']);
-Route::match(['GET', 'POST'], '/delivery', [PagesController::class, 'delivery']);
+/*Route::match(['GET', 'POST'], '/delivery', [PagesController::class, 'delivery']);
 Route::match(['GET', 'POST'], '/news', [PagesController::class, 'news']);
 Route::match(['GET', 'POST'], '/contacts', [PagesController::class, 'contacts']);
-Route::match(['GET', 'POST'], '/shinomontazh', [PagesController::class, 'shinomontazh']);
+Route::match(['GET', 'POST'], '/shinomontazh', [PagesController::class, 'shinomontazh']);*/
 
 Route::group(['prefix' => 'admin'], function () {Voyager::routes();});
+Route::match(['GET', 'POST'], '/{slug}', [PagesController::class, 'page']);
+
+
+

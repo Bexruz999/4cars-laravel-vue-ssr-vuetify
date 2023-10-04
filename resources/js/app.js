@@ -48,19 +48,26 @@ function changeContent(response) {
     const content = document.getElementById('content');
     const title = document.getElementById('title');
     const intro = document.getElementById('intro');
+    const s404 = document.getElementById('s404');
     let data = response.data;
     let a = 'url(' + data['page']['image'] + ')';
-    console.log(a);
+    intro.style.backgroundImage = a;
+    console.log(response.data);
     content.innerHTML = data['view'];
     title.innerHTML = data['page']['title'];
     if (data['page']['slug'] === '/'){
         intro.classList.remove('introPages');
         intro.classList.add('introMain');
+        s404.style.display = 'none';
+    } else if (data['page']['slug'] === '404') {
+        intro.classList.remove('introPages');
+        intro.classList.add('introMain');
+        s404.style.display = 'block'
     } else {
         intro.classList.remove('introMain');
         intro.classList.add('introPages');
+        s404.style.display = 'none'
     }
-    intro.style.backgroundImage = a;
 }
 
 app.provide('content', {updateContent, contentName, contentData});
