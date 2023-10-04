@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="col-xl-3 col-12 header-buttons">
-                    <a href="/admin">
+                    <a href="/profile">
                         <img src="{{ Voyager::image(setting('user.default-avatar')) }}" alt=""/>
                         <span>Личный кабинет</span>
                     </a>

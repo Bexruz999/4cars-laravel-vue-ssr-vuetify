@@ -3,6 +3,7 @@
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +20,13 @@ use Illuminate\Support\Facades\Route;
 Route::match(['GET', 'POST'], '/', [HomeController::class, 'index']);
 Route::match(['GET', 'POST'], '/tires', [CatalogController::class, 'tires']);
 Route::match(['GET', 'POST'], '/rims', [CatalogController::class, 'tires']);
-/*Route::match(['GET', 'POST'], '/delivery', [PagesController::class, 'delivery']);
-Route::match(['GET', 'POST'], '/news', [PagesController::class, 'news']);
-Route::match(['GET', 'POST'], '/contacts', [PagesController::class, 'contacts']);
-Route::match(['GET', 'POST'], '/shinomontazh', [PagesController::class, 'shinomontazh']);*/
+
+Route::group(['middleware' => 'auth', 'prefix' => 'profile'],function () {
+    Route::match(['GET', 'POST'], '/', [UserController::class, 'signup']);
+});
+
+#region registration
+Route::match(['GET', 'POST'], '/login', [UserController::class, 'login'])->middleware('guest')->name('login');
 
 Route::group(['prefix' => 'admin'], function () {Voyager::routes();});
 Route::match(['GET', 'POST'], '/{slug}', [PagesController::class, 'page']);
