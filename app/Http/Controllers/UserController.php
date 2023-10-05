@@ -6,13 +6,23 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function signup()
+    public function signup(Request $request)
     {
-        return view('auth.signup');
+        if ($request->ajax() || $request->isJson()) {
+            return response()->json(['true'], 200);
+        } else {
+            return view('auth.signup');
+        }
     }
 
-    public function login()
+    public function login(Request $request)
     {
-        return view('auth.signin');
+        $data = $request->validated();
+
+        if ($request->ajax() || $request->isJson()) {
+            return response()->json($data, 200);
+        } else {
+            return view('auth.signin');
+        }
     }
 }

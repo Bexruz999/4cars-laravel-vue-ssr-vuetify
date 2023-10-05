@@ -17,14 +17,17 @@ import * as directives from 'vuetify/directives'
 
 const vuetify = createVuetify({
     components,
-    directives,
+    directives
 })
 
 const Home = () => import('./views/Home.vue');
 const Catalog = () => import('./views/Catalog.vue');
+const Login = () => import('./components/Login.vue');
+
 const routes = [
     { path: '', component: Home },
-    { path: '/tires', component: Catalog }
+    { path: '/tires', component: Catalog },
+    { path: '/login', component: Login }
 ];
 
 const router = createRouter({

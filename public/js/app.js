@@ -19798,12 +19798,18 @@ var Home = function Home() {
 var Catalog = function Catalog() {
   return __webpack_require__.e(/*! import() */ "resources_js_views_Catalog_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/Catalog.vue */ "./resources/js/views/Catalog.vue"));
 };
+var Login = function Login() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_Login_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Login.vue */ "./resources/js/components/Login.vue"));
+};
 var routes = [{
   path: '',
   component: Home
 }, {
   path: '/tires',
   component: Catalog
+}, {
+  path: '/login',
+  component: Login
 }];
 var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_11__.createRouter)({
   // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
@@ -84606,7 +84612,7 @@ function useRender(render) {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_Home_vue":1,"resources_js_views_Catalog_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_Home_vue":1,"resources_js_views_Catalog_vue":1,"resources_js_components_Login_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
