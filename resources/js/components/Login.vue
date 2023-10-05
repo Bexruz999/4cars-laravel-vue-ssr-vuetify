@@ -4,10 +4,11 @@ import { useField, useForm } from 'vee-validate'
 
 const { handleSubmit, handleReset } = useForm({
     validationSchema: {
-        login (value) {
-            if (value?.length >= 2) return true
+        email (value) {
+            emailError.value = false;
+            if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
 
-            return 'Name needs to be at least 2 characters.'
+            return 'Must be a valid e-mail.';
         },
 
         password (value) {
@@ -17,15 +18,31 @@ const { handleSubmit, handleReset } = useForm({
         }
     },
 })
-const login = useField('login')
-const password = useField('password')
+const emailError = ref(false);
+const passError = ref(false);
+const login = useField('email');
+const password = useField('password');
 
 const submit = handleSubmit(values => {
     alert(JSON.stringify(values, null, 2));
     window.axios.post('/login', values)
-        .then((response) => {
+        .then(response => {
             console.log(response)
-        }).catch();
+        }).catch(error => {
+        if (error.response) {
+            console.log(error.response);
+            console.log(error.response.status);
+            if (error.response.status === 401) {
+
+            } else {
+                let errors = Object.keys(error.response.data.errors);
+                if (errors.includes('email')) {
+                    emailError.value = 'uje bor';
+                    console.log('true');
+                }
+            }
+        }}
+    );
 })
 </script>
 
