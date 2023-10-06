@@ -21,8 +21,9 @@ Route::match(['GET', 'POST'], '/', [HomeController::class, 'index']);
 Route::match(['GET', 'POST'], '/tires', [CatalogController::class, 'tires']);
 Route::match(['GET', 'POST'], '/rims', [CatalogController::class, 'tires']);
 
-Route::group(['middleware' => 'auth', 'prefix' => 'profile'],function () {
-    Route::match(['GET', 'POST'], '/', [UserController::class, 'signup']);
+Route::group(['middleware' => 'auth', 'prefix' => 'user'],function () {
+    Route::match(['GET', 'POST'], '/info', [UserController::class, 'info'])->name('info');
+    Route::match(['GET', 'POST'], '/{slug}', [UserController::class, 'profile'])->name('profile');
 });
 
 #region registration

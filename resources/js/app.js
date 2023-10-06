@@ -1,6 +1,6 @@
 require('./bootstrap');
 
-import { createApp, ref } from 'vue';
+import {createApp, ref} from 'vue';
 import Collback from './components/Callback.vue';
 import Search from './components/Search.vue';
 import FormMask from "./components/FormMask.vue";
@@ -11,7 +11,7 @@ import {createRouter, createWebHistory} from 'vue-router';
 
 // Vuetify
 import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
+import {createVuetify} from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
@@ -24,12 +24,14 @@ const Home = () => import('./views/Home.vue');
 const Catalog = () => import('./views/Catalog.vue');
 const Login = () => import('./components/Login.vue');
 const Register = () => import('./components/Register.vue');
+const User = () => import('./profile/User.vue')
 
 const routes = [
     { path: '', component: Home },
     { path: '/tires', component: Catalog },
     { path: '/login', component: Login },
-    { path: '/register', component: Register}
+    { path: '/register', component: Register},
+    { path: '/user/profile', component: User},
 ];
 
 const router = createRouter({
@@ -55,8 +57,7 @@ function changeContent(response) {
     const intro = document.getElementById('intro');
     const s404 = document.getElementById('s404');
     let data = response.data;
-    let a = 'url(' + data['page']['image'] + ')';
-    intro.style.backgroundImage = a;
+    intro.style.backgroundImage = 'url(' + data['page']['image'] + ')';
     console.log(response.data);
     content.innerHTML = data['view'];
     title.innerHTML = data['page']['title'];

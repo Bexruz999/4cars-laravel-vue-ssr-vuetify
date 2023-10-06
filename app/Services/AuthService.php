@@ -27,10 +27,16 @@ class AuthService
             return response()->json($url, 200);
         }
 
-        return redirect('/profile');
+        return redirect('/user/profile');
     }
 
-    public function register() {
-        return 'test';
+    public function register($data) {
+        $data['password'] = Hash::make($data['password']);
+        unset($data['confirm']);
+        $user = User::query()->create($data);
+        $user->save();
+
+        auth()->login($user);
+        return redirect('/user/profile');
     }
 }

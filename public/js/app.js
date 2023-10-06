@@ -19804,6 +19804,9 @@ var Login = function Login() {
 var Register = function Register() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_Register_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Register.vue */ "./resources/js/components/Register.vue"));
 };
+var User = function User() {
+  return __webpack_require__.e(/*! import() */ "resources_js_profile_User_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./profile/User.vue */ "./resources/js/profile/User.vue"));
+};
 var routes = [{
   path: '',
   component: Home
@@ -19816,6 +19819,9 @@ var routes = [{
 }, {
   path: '/register',
   component: Register
+}, {
+  path: '/user/profile',
+  component: User
 }];
 var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_11__.createRouter)({
   // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
@@ -19837,8 +19843,7 @@ function changeContent(response) {
   var intro = document.getElementById('intro');
   var s404 = document.getElementById('s404');
   var data = response.data;
-  var a = 'url(' + data['page']['image'] + ')';
-  intro.style.backgroundImage = a;
+  intro.style.backgroundImage = 'url(' + data['page']['image'] + ')';
   console.log(response.data);
   content.innerHTML = data['view'];
   title.innerHTML = data['page']['title'];
@@ -84618,7 +84623,7 @@ function useRender(render) {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_Home_vue":1,"resources_js_views_Catalog_vue":1,"resources_js_components_Login_vue":1,"resources_js_components_Register_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_Home_vue":1,"resources_js_views_Catalog_vue":1,"resources_js_components_Login_vue":1,"resources_js_components_Register_vue":1,"resources_js_profile_User_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

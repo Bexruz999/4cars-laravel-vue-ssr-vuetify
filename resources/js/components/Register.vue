@@ -50,7 +50,7 @@ const formValid = computed(() => {
 </script>
 
 <template>
-    <v-icon icon="mdi-home" />
+
     <div class="container-lg">
         <div class="row cabinet">
             <div class="col-lg-6 col-12 cabinet-form">
@@ -61,14 +61,14 @@ const formValid = computed(() => {
 
                         <input type="hidden" name="_token" :value="csrf">
 
-                        <v-text-field variant="outlined" name="password" v-model="name.value.value" :error-messages="name.errorMessage.value" label="Имя"></v-text-field>
-                        <br>
+                        <v-text-field variant="outlined" name="name" v-model="name.value.value" :error-messages="name.errorMessage.value" label="Имя"></v-text-field>
+                            <br>
                         <v-text-field variant="outlined" name="email" v-model="login.value.value" :error-messages="login.errorMessage.value" label="E-mail"></v-text-field>
                             <br>
                         <v-text-field variant="outlined" type="password" name="password" v-model="password.value.value" :error-messages="password.errorMessage.value" label="Пароль"></v-text-field>
-                        <br>
-                        <v-text-field variant="outlined" type="password" name="email" v-model="confirm.value.value" :error-messages="confirm.errorMessage.value" label="Подтверждение пароля"></v-text-field>
-                        <br>
+                            <br>
+                        <v-text-field variant="outlined" type="password" name="confirm" v-model="confirm.value.value" :error-messages="confirm.errorMessage.value" label="Подтверждение пароля"></v-text-field>
+                            <br>
                         <v-btn color="blue-darken-2" :disabled="!formValid" type="submit">Зарегистрироваться</v-btn>
 
                     </form>

@@ -31,7 +31,6 @@ class PagesController extends Controller
                 $data['page'] = $page;
                 return response()->json($data, 200);
             } else{
-                dd($page);
                 return view('layout', ['page' => 404]);
             }
         }
