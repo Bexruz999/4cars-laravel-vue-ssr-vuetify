@@ -7,7 +7,7 @@ const {updateContent} = inject('content')
 </script>
 
 <template>
-    <slot :btn="updateContent" ></slot>
+    <slot :btn="updateContent"></slot>
 </template>
 
 <style scoped>

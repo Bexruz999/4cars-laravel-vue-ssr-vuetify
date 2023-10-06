@@ -23,11 +23,13 @@ const vuetify = createVuetify({
 const Home = () => import('./views/Home.vue');
 const Catalog = () => import('./views/Catalog.vue');
 const Login = () => import('./components/Login.vue');
+const Register = () => import('./components/Register.vue');
 
 const routes = [
     { path: '', component: Home },
     { path: '/tires', component: Catalog },
-    { path: '/login', component: Login }
+    { path: '/login', component: Login },
+    { path: '/register', component: Register}
 ];
 
 const router = createRouter({

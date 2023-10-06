@@ -3,37 +3,50 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\AuthService;
+use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function signup(Request $request)
+    public function __construct(protected AuthService $authService)
     {
-        if ($request->ajax() || $request->isJson()) {
-            return response()->json(['true'], 200);
-        } else {
-            return view('auth.signup');
-        }
     }
 
-    public function login(Request $request)
+    public function register(Request $request)
     {
-        if ($request->ajax() || $request->isJson()) {
+
+        if ($request->has('email')) {
+
             $data = $request->validate([
                 'email' => 'required|email',
                 'password' => 'required|min:8'
             ]);
 
-            $user = User::where('email', $data['email'])->first();
+            return $this->authService->register($data);
 
-            if (!$user || !Hash::check($data['password'], $user->password)) {
-                return response()->json($data, 401);
-            }
-
-            return response()->json($data, 200);
         } else {
-            return view('auth.signin');
+
+            return view('auth.signup');
+
         }
+    }
+
+    public function login(Request $request)
+    {
+        if ($request->has('email')) {
+
+            $data = $request->validate([
+                'email' => 'required|email',
+                'password' => 'required|min:8'
+            ]);
+
+            return $this->authService->login($data);
+
+        }
+
+        return view('auth.signin');
+
     }
 }
