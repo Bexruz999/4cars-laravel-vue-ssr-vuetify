@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
-use App\Models\User;
 use App\Services\AuthService;
-use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use TCG\Voyager\Facades\Voyager;
 
 class UserController extends Controller
 {
@@ -55,22 +51,25 @@ class UserController extends Controller
     }
 
     public function profile(Request $request, $slug) {
+
         $page = Page::where('slug', "user/$slug")->where('status', 'ACTIVE')->first();
+
         if ($page) {
 
-            return view('auth.signup');
+            $user = auth()->user();
+
+            return view('auth.auth', ['user' => $user]);
 
         }
-        else {
-            $page = Page::where('slug', '404')->where('status', 'ACTIVE')->first();
 
-            return view('layout', ['page' => 404]);
-        }
+        return view('layout', ['page' => 404]);
     }
 
     public function info() {
 
         $user = auth()->user();
+
         return response()->json($user, 200);
+
     }
 }

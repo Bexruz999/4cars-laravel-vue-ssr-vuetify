@@ -28,7 +28,6 @@ class SearchService
 
         $result = [];
         foreach ($products as $product) {
-            //dd($product);
             $result[] = [
               'id' => $product->id,
               'name' => $product->position_name,

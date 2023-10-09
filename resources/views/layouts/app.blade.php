@@ -1,45 +1,38 @@
 <!DOCTYPE html>
 <html lang="ru">
-{{--@php
-    $metas = \App\Models\MetaTeg::where('status', 'active')->get();
+@php
+    /*$metas = \App\Models\MetaTeg::where('status', 'active')->get();
     $images = \App\Models\Element::where('status', 'active')->whereIn('position', ['catalog-bg'])->get();
     $uri = !empty(Illuminate\Support\Facades\Route::current()) ? Illuminate\Support\Facades\Route::current()->uri : false;
-    $urls = ['about', 'catalog', 'news-page', 'contact-page', 'review-page', '/'];
- @endphp--}}
-<x-head :metas="$metas"></x-head>
+    $urls = ['about', 'catalog', 'news-page', 'contact-page', 'review-page', '/'];*/
+    $menu = \App\Models\SiteMenu::where('active', 1)->get();
+    $page = \App\Models\Page::where('slug', request()->path())->first();
+@endphp
+<x-head></x-head>
+
+
 <body>
-@foreach($metas->where('position', 'header') as $header)
-    {!! (request()->path() === $header->slug || $header->all_pages) ? $header->code : '' !!}
-@endforeach
+<div class="dyn-content">
+    <x-header :menus="$menu->where('position', 'main')" :page="$page"></x-header>
+    <div class="cabinet-active">
+        <div class="container-lg">
+            <div class="row d-flex justify-content-evenly">
+                <div class="col-xl-3 col-12 cabinet-active__menu mb-3">
+                    @yield('user')
+                </div>
+                <div class="col-xl-8 col-12">
+                    <router-view></router-view>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div class="wrap">
-    <x-header>@yield('header')</x-header>
-    @yield('content')
+    <div id="content">
+        @yield('content')
+    </div>
+    <x-form></x-form>
+    <x-footer :menus="$menu" ></x-footer>
 </div>
-<x-footer></x-footer>
-
-<x-collBack></x-collBack>
-<x-scripts :metas="$metas"> @yield('scripts') </x-scripts>
-@if(in_array($uri, $urls))
-    <style>
-        body {
-            position: relative;
-        }
-        .catalog-bg{
-            position: absolute;
-            z-index: -1;
-        }
-    </style>
-
-    <style>
-        @foreach($images as $id => $image)
-                #catalog-bg-{{$id}} { {!! $image->code !!} }
-        @endforeach
-    </style>
-
-    @foreach($images as $id => $image)
-        <img id="catalog-bg-{{$id}}" src="{{ asset(Voyager::image($image->image)) }}" class="catalog-bg"/>
-    @endforeach
-@endif
+<x-scripts></x-scripts>
 </body>
 </html>
