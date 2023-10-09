@@ -14,19 +14,7 @@
 <body>
 <div class="dyn-content">
     <x-header :menus="$menu->where('position', 'main')" :page="$page"></x-header>
-    <div class="cabinet-active">
-        <div class="container-lg">
-            <div class="row d-flex justify-content-evenly">
-                <div class="col-xl-3 col-12 cabinet-active__menu mb-3">
-                    @yield('user')
-                </div>
-                <div class="col-xl-8 col-12">
-                    <router-view></router-view>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <router-view></router-view>
     <div id="content">
         @yield('content')
     </div>

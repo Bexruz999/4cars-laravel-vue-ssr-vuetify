@@ -58,7 +58,7 @@ class UserController extends Controller
 
             $user = auth()->user();
 
-            return view('auth.auth', ['user' => $user]);
+            return view('auth.profile', ['page' => $slug ,'user' => $user]);
 
         }
 
