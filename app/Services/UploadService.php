@@ -75,7 +75,7 @@ class UploadService
 
                     case ($attribute_name === 'Модели') :
 
-                        $this->addModel($product, $attribute_name);
+                        $this->addModel($product, $option_value);
                         break;
 
                     case ($attribute_name === 'Брэнды') :
@@ -119,6 +119,7 @@ class UploadService
                         break;
                 }
 
+                $product->save();
 
             }
         }
@@ -168,7 +169,7 @@ class UploadService
 
         if (!$brand) {
 
-            $brand = new Attribute;
+            $brand = new Brand;
             $brand->name = $value;
             $brand->save();
 
