@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\ExcellController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use TCG\Voyager\Facades\Voyager;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +32,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user'],function () {
 Route::match(['GET', 'POST'], '/login', [UserController::class, 'login'])->middleware('guest')->name('login');
 Route::match(['GET', 'POST'], '/register', [UserController::class, 'register'])->middleware('guest')->name('register');
 
-Route::group(['prefix' => 'admin'], function () {Voyager::routes();});
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+    Route::get('/excell', [ExcellController::class, 'import'])->middleware('admin');
+    Route::post('/excell-upload', [ExcellController::class, 'upload'])->middleware('admin');
+});
 Route::match(['GET', 'POST'], '/{slug}', [PagesController::class, 'page']);
 
 

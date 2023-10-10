@@ -1,7 +1,7 @@
 <script setup>
 
 import ProfileMenu from "./ProfileMenu.vue";
-import ProfileEdit from "./ProfileEdit.vue";
+import ProfilePayment from "./ProfilePayment.vue";
 </script>
 
 <template>
@@ -10,7 +10,7 @@ import ProfileEdit from "./ProfileEdit.vue";
         <div class="container-lg">
             <div class="row d-flex justify-content-evenly">
                 <profile-menu/>
-                <profile-edit/>
+                <profile-payment/>
             </div>
         </div>
     </div>

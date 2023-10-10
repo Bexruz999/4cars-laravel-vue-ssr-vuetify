@@ -11,6 +11,7 @@
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
+        "rap2hpoutre/fast-excel": "^5.3",
         "spatie/laravel-server-side-rendering": "^1.4",
         "tcg/voyager": "^1.6"
     },

@@ -24,7 +24,9 @@ const Home = () => import('./views/Home.vue');
 const Catalog = () => import('./views/Catalog.vue');
 const Login = () => import('./components/Login.vue');
 const Register = () => import('./components/Register.vue');
-const User = () => import('./profile/User.vue')
+const User = () => import('./profile/User.vue');
+const Payment = () => import('./profile/Payment.vue');
+const Payment = () => import('./profile/Payment.vue');
 
 const routes = [
     { path: '', component: Home },
@@ -32,6 +34,9 @@ const routes = [
     { path: '/login', component: Login },
     { path: '/register', component: Register},
     { path: '/user/profile', component: User},
+    { path: '/user/payment', component: Payment},
+    { path: '/user/payment', component: Payment},
+    { path: '/user/payment', component: Payment},
 ];
 
 const router = createRouter({
