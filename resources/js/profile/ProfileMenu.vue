@@ -1,8 +1,8 @@
 <script setup>
 
 const profile_menu = [
-    {'slug': '/test', 'img': 'history-icon.png', 'title': 'История заказов'},
-    {'slug': '/test', 'img': 'basket-icon.png', 'title': 'Корзина'},
+    {'slug': '/user/history', 'img': 'history-icon.png', 'title': 'История заказов'},
+    {'slug': '/user/basket', 'img': 'basket-icon.png', 'title': 'Корзина'},
     {'slug': '/user/payment', 'img': 'card-icon.png', 'title': 'Мои карты'},
     {'slug': '/user/profile', 'img': 'setting-icon.png', 'title': 'Настройки'}
 ];
@@ -27,6 +27,7 @@ const pathname = window.location.pathname;
                     </div>
                 </a>
             </template>
+
         </mymenu>
     </div>
 

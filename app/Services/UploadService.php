@@ -61,66 +61,70 @@ class UploadService
 
         $collection = (new FastExcel)->sheet(1)->import('E:\Programs\OSPanel\domains\4cars\Товары для сайта.xlsx');
 
-        foreach ($collection as $item) {
+        foreach ($collection as $key => $item) {
 
             $product_name = Arr::get($item, 'value');
-            $attribute_name = Arr::get($item, 'atribute_type');
-            $option_value = Arr::get($item, 'atribute_value');
-            $product = Product::where('Name', $product_name)->first();
+            if (str_starts_with($product_name, 'Диски')) {
+                $product_name = str_replace('Диски', 'Комплект дисков', $product_name);
+                echo $key . $product_name . '\\n';
+                $attribute_name = Arr::get($item, 'atribute_type');
+                $option_value = Arr::get($item, 'atribute_value');
+                $product = Product::where('Name', $product_name)->first();
 
-            if ($product) {
+                if ($product) {
 
 
-                switch (true) {
+                    switch (true) {
 
-                    case ($attribute_name === 'Модели') :
+                        case ($attribute_name === 'Модели' || $attribute_name === 'Модели дисков') :
 
-                        $this->addModel($product, $option_value);
-                        break;
+                            $this->addModel($product, $option_value);
+                            break;
 
-                    case ($attribute_name === 'Брэнды') :
+                        case ($attribute_name === 'Брэнды') :
 
-                        $this->addBrand($product, $option_value);
-                        break;
+                            $this->addBrand($product, $option_value);
+                            break;
 
-                    case ($attribute_name === 'Сезоны') :
+                        case ($attribute_name === 'Сезоны' || $attribute_name === 'Типы дисков') :
 
-                        $product->sezony = $option_value;
-                        break;
+                            $product->sezony = $option_value;
+                            break;
 
-                    case ($attribute_name === 'Виды номенклатуры') :
+                        case ($attribute_name === 'Виды номенклатуры') :
 
-                        $product->vidy_nomenklatury = $option_value;
-                        break;
+                            $product->vidy_nomenklatury = $option_value;
+                            break;
 
-                    case ($attribute_name === 'НеПубликовать') :
+                        case ($attribute_name === 'НеПубликовать') :
 
-                        $product->nepublikovat = $option_value;
-                        break;
+                            $product->nepublikovat = $option_value;
+                            break;
 
-                    case ($attribute_name === 'RunFlat') :
+                        case ($attribute_name === 'RunFlat') :
 
-                        $product->runflat = $option_value;
-                        break;
+                            $product->runflat = $option_value;
+                            break;
 
-                    case ($attribute_name === 'Усиленные') :
+                        case ($attribute_name === 'Усиленные') :
 
-                        $product->usilennye = $option_value;
-                        break;
+                            $product->usilennye = $option_value;
+                            break;
 
                         case ($attribute_name === 'Шипы') :
 
-                        $product->shipy = $option_value;
-                        break;
+                            $product->shipy = $option_value;
+                            break;
 
-                    default :
+                        default :
 
-                        $this->addAttribute($product, $option_value, $attribute_name);
-                        break;
+                            $this->addAttribute($product, $option_value, $attribute_name);
+                            break;
+                    }
+
+                    $product->save();
+
                 }
-
-                $product->save();
-
             }
         }
     }
@@ -135,6 +139,7 @@ class UploadService
 
             $model = new Models;
             $model->name = $value;
+            $model->type = 'disk';
             $model->save();
 
         }
@@ -142,12 +147,16 @@ class UploadService
 
     private function addAttribute($product, $value, $type) {
 
+        $product->razmery_shiny     = $type === 'Размеры шины' || $type === 'Размеры дисков' ? $value : null;
+        $product->shirina_shin      = $type === 'Ширина шин'   || $type === 'Ширина дисков'  ? $value : null;
+        $product->diametr_shin      = $type === 'Диаметр шин'  || $type === 'Диаметр дисков' ? $value : null;
+        $product->vysota_shin       = $type === 'Высота шин'   || $type === 'Вылеты'         ? $value : null;
         $product->indeksy_skorosti  = $type === 'Индексы скорости'  ? $value : null;
         $product->indeksy_nagruzki  = $type === 'Индексы нагрузки'  ? $value : null;
-        $product->razmery_shiny     = $type === 'Размеры шины'      ? $value : null;
-        $product->shirina_shin      = $type === 'Ширина шин'        ? $value : null;
-        $product->diametr_shin      = $type === 'Диаметр шин'       ? $value : null;
-        $product->vysota_shin       = $type === 'Высота шин'        ? $value : null;
+        $product->otverstiya        = $type === 'Отверстия'         ? $value : null;
+        $product->kolichestvo_boltov= $type === 'Количество болтов' ? $value : null;
+        $product->rasstoyaniya      = $type === 'Расстояния'        ? $value : null;
+        $product->cveta             = $type === 'Цвета'             ? $value : null;
 
         $attribute = Attribute::where('value', $value)->where('type', $type)->first();
 

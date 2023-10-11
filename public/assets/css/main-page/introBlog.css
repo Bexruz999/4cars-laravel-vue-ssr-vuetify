@@ -40,6 +40,7 @@
   padding: 10px;
   font-size: 26px;
   font-weight: 400;
+  min-height: 425px;
 }
 .introBlog-cart__btn {
   background-color: #1A6EC1;

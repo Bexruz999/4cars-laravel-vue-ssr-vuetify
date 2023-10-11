@@ -12,10 +12,10 @@
                             <div class="introBlog-title__decor"></div>
                         </div>
                         <div class="introBlog-cart__inner">
-                            <img class="introBlog-cart__img" src="{{ asset('assets/images/blog-image.jpg') }}" alt="blog-img">
-                            <div class="introBlog-cart__text">{!! $blog->Body !!} </div>
+                            <img class="introBlog-cart__img" src="{{ asset(Voyager::image($blog->image)) }}" alt="blog-img">
+                            <div class="introBlog-cart__text"><p>{{ $blog->short_desc }}</p> </div>
                             <a href="#" class="introBlog-cart__btn">
-                                <img src="{{ asset('assets/images/icons/blog-book.svg') }}" alt="">
+                                <img src="{{ asset('assets/images/icons/blog-book.svg') }}" alt="{{ $blog->title }}">
                                 <span>Читать дальше</span>
                             </a>
                         </div>
