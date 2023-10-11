@@ -6,7 +6,8 @@
     $uri = !empty(Illuminate\Support\Facades\Route::current()) ? Illuminate\Support\Facades\Route::current()->uri : false;
     $urls = ['about', 'catalog', 'news-page', 'contact-page', 'review-page', '/'];*/
     $menu = \App\Models\SiteMenu::where('active', 1)->get();
-    $page = \App\Models\Page::where('slug', request()->path())->first();
+    $slug = preg_replace('#\/\d+#', '', request()->path());
+    $page = \App\Models\Page::where('slug', $slug)->first();
 @endphp
 <x-head></x-head>
 

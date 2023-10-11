@@ -17,7 +17,7 @@
                         Так, же для зарегистрированных клиентов мы предоставляем скидки. Большинство товаров в нашем
                         магазине.
                     </div>
-                    <a href="" class="introAbout-content__btn">
+                    <a href="/about" class="introAbout-content__btn">
                         узнать больше
                     </a>
                 </div>

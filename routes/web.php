@@ -23,6 +23,7 @@ Route::match(['GET', 'POST'], '/', [HomeController::class, 'index']);
 Route::match(['GET', 'POST'], '/tires', [CatalogController::class, 'tires']);
 Route::match(['GET', 'POST'], '/rims', [CatalogController::class, 'tires']);
 
+#region profile
 Route::group(['middleware' => 'auth', 'prefix' => 'user'],function () {
     Route::match(['GET', 'POST'], '/info', [UserController::class, 'info'])->name('info');
     Route::match(['GET', 'POST'], '/{slug}', [UserController::class, 'profile'])->name('profile');
@@ -31,12 +32,18 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user'],function () {
 #region registration
 Route::match(['GET', 'POST'], '/login', [UserController::class, 'login'])->middleware('guest')->name('login');
 Route::match(['GET', 'POST'], '/register', [UserController::class, 'register'])->middleware('guest')->name('register');
+#region registration
 
+
+#region admin
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
     Route::get('/excell', [ExcellController::class, 'import'])->middleware('admin');
     Route::post('/excell-upload', [ExcellController::class, 'upload'])->middleware('admin');
 });
+
+
+Route::match(['GET', 'POST'], '/blog/{id}', [PagesController::class, 'blog']);
 Route::match(['GET', 'POST'], '/{slug}', [PagesController::class, 'page']);
 
 

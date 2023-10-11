@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogPost;
 use App\Models\Page;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
@@ -40,5 +41,14 @@ class PagesController extends Controller
         }
 
         else return view('layout', ['page' => 404]);
+    }
+
+    public function blog($id) {
+        $blog = BlogPost::where('Id', $id)->first();
+        $blogs = BlogPost::where('Id', '!=', $id)->take(6)->get();
+
+        if ($blog) {
+            return view('pages.blog', ['blog' => $blog, 'blogs' => $blogs]);
+        }
     }
 }

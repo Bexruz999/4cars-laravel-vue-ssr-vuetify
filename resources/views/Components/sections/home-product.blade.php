@@ -6,7 +6,7 @@
                     <x-product :product="$product"/>
                 @endforeach
             </div>
-            <a href="#" class="selection-cart__all">Все товары</a>
+            <a href="/tires" class="selection-cart__all">Все товары</a>
         </div>
     </div>
 </div>
