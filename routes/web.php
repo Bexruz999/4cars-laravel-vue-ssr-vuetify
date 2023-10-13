@@ -18,6 +18,8 @@ use TCG\Voyager\Facades\Voyager;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/test', [\App\Services\UploadService::class, 'generate']);
+
 
 Route::match(['GET', 'POST'], '/', [HomeController::class, 'index']);
 Route::match(['GET', 'POST'], '/tires', [CatalogController::class, 'tires']);

@@ -184,4 +184,22 @@ class UploadService
 
         }
     }
+
+    public function generate () {
+
+        $products = Product::select(['Name'])->take(5)->get();
+
+        $test = [];
+        foreach ($products as $key => $product) {
+
+            preg_match('#Шины (.*) (\d+)/(\d+) R(\d+) (.+)([A-Z])#', $product->Name, $data);
+
+            $test[$key]['shirina_shin'] = $data[2];
+            $test[$key]['vysota_shin'] = $data[3];
+            $test[$key]['diametr_shin'] = $data[4];
+            $test[$key]['indeksy_nagruzki'] = $data[5];
+            $test[$key]['indeksy_skorosti'] = $data[6];
+        }
+        dd($test);
+    }
 }
