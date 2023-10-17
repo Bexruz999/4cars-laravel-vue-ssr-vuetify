@@ -4,7 +4,7 @@ import {onMounted, ref} from "vue";
 
 const tab = ref('one');
 const tab2 = ref('one');
-
+const data = ref([]);
 const modelValue = ref(null);
 const width = ref();
 const height = ref();
@@ -28,28 +28,43 @@ const getSizes = function (url, data, callback) {
 
     axios.post(`/api/${url}`, data)
         .then((response) => { callback(response.data) })
-        .catch( (error) => {});
+        .catch( () => {});
 }
 
 const setData = function (toggle, index, name) {
     toggle();
-    filter.value[name][index] = !filter.value.seasons[index]
+    filter.value[name][index] = !filter.value[name][index]
     updateSizes();
 }
 const getForSize =  function () {
 
-    axios.post('/api/test', filter.value)
+    console.log(filter.value, 'text')
+    axios.post('/api/get-tires', filter.value)
         .then((response) => {
             console.log(response.data)
+            const content = document.getElementById('content');
+            content.innerHTML = '';
+            data.value = response.data;
         })
         .catch( (error) => {});
 }
 
+const clearForm = function () {
+    for (const key in filter.value.seasons)     { filter.value.seasons[key] = false; }
+    for (const k in filter.value.diameters)     { filter.value.diameters[k] = false; }
+
+    getSizes('get-sizes', false, (data) => {
+        width.value = data.width;
+        height.value = data.height;
+    });
+}
+
 const updateSizes = function () {
 
-
     getSizes('update-tire' , filter.value, (data) => {
-        console.log(data)
+        console.log(data);
+        width.value = data.width;
+        height.value = data.height;
     });
 }
 
@@ -75,21 +90,23 @@ const updateSizes = function () {
                                     <form>
                                         <v-item-group multiple selected-class="bg-blue-darken-2">
                                             <div class="text-caption mb-2">Сезон</div>
-                                            <v-item v-for="(n, index) in filter.seasons" :key="index" v-slot="{ selectedClass, toggle }">
-                                                <v-chip style="margin-left: 2px" :class="selectedClass" @click="setData(toggle, index, 'seasons')">
+                                            <v-item v-for="(n, index) in filter.seasons" :key="index" v-slot="{toggle }">
+                                                <v-chip style="margin-left: 2px" :class="{ 'bg-blue-darken-2': n}" @click="setData(toggle, index, 'seasons')">
                                                     {{index}}
                                                 </v-chip>
                                             </v-item>
                                         </v-item-group>
                                         <br>
+                                        <br>
                                         <v-item-group multiple selected-class="bg-blue-darken-2">
                                             <div class="text-caption mb-2">Диаметр</div>
-                                            <v-item v-for="(d, index) in filter.diameters" :key="index" v-slot="{ selectedClass, toggle }">
-                                                <v-chip style="margin-left: 2px" :class="selectedClass" @click="setData(toggle, index, 'diameters')">
+                                            <v-item v-for="(d, index) in filter.diameters" :key="index" v-slot="{ toggle }">
+                                                <v-chip style="margin-left: 2px" :class="{ 'bg-blue-darken-2': d}" @click="setData(toggle, index, 'diameters')">
                                                     {{index}}
                                                 </v-chip>
                                             </v-item>
                                         </v-item-group>
+                                        <br>
                                         <br>
                                         <div class="row">
                                             <div class="col-6">
@@ -99,10 +116,10 @@ const updateSizes = function () {
                                                 <v-select v-model="filter.height" label="Высота" color="blue-darken-2" :items="height" variant="outlined" return-object></v-select>
                                             </div>
                                         </div>
-                                        <v-switch label="Только в наличии" inset color="blue-darken-2"></v-switch>
+                                        <br>
 
                                         <v-btn @click="getForSize" variant="flat" color="blue-darken-2">Подобрать</v-btn>
-                                        <v-btn style="margin-left: 5px;" variant="outlined" color="blue-darken-2">Сбросить</v-btn>
+                                        <v-btn @click="clearForm" style="margin-left: 5px;" variant="outlined" color="blue-darken-2">Сбросить</v-btn>
                                     </form>
                                 </v-window-item>
 
@@ -131,6 +148,7 @@ const updateSizes = function () {
                     </v-card>
                     <br>
                 </div>
+
                 <div class="col-lg-6">
                     <h3 class="selection-title">Подбор дисков</h3>
                     <v-card>
@@ -203,6 +221,31 @@ const updateSizes = function () {
         </div>
     </div>
 
+
+    <div class="selection">
+        <div class="container-lg">
+            <div class="row">
+                <div class="products-container mb-lg-5 mb-3 d-flex justify-content-lg-center justify-content-around align-items-center flex-wrap">
+                    <div v-for="item in data" class="products-item">
+                        <div class="products-item__img">
+                            <img src="http://127.0.0.1:8000/assets/images/product-img.png" alt="tseee">
+                        </div>
+                        <div class="products-item__content">
+                            <div class="products-item__content-title">{{ item.Name }}</div>
+                            <div class="products-item__content-price">{{ item.Price }} тг</div>
+                            <div>
+                                <a href="#" class="products-item__content-buy mr-1">Купить</a>
+                                <a href="#" class="products-item__content-korzina">В корзину</a>
+                            </div>
+
+                            <a href="#" class="products-item__content-rasrochka">Купить в рассрочку</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="/tires" class="selection-cart__all">Все товары</a>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped>

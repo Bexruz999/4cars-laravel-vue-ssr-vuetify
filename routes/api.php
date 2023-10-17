@@ -21,5 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/test', function (Request $request) {return $request;});
 
-Route::post('/update-tire', [SearchController::class, 'updateTire']);
-Route::post('/get-sizes', [SearchController::class, 'getSizesTire']);
+Route::post('/update-tire', [SearchController::class, 'updateTireSizes']);
+Route::post('/get-sizes', [SearchController::class, 'getTireSizes']);
+Route::post('/get-tires', [SearchController::class, 'getTires']);

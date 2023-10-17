@@ -187,19 +187,30 @@ class UploadService
 
     public function generate () {
 
-        $products = Product::select(['Name'])->take(5)->get();
+        $products = Product::select(['Id', 'Name', 'shirina_shin', 'vysota_shin', 'diametr_shin', 'indeksy_nagruzki', 'indeksy_skorosti'])->get();
 
         $test = [];
         foreach ($products as $key => $product) {
 
-            preg_match('#Шины (.*) (\d+)/(\d+) R(\d+) (.+)([A-Z])#', $product->Name, $data);
-
-            $test[$key]['shirina_shin'] = $data[2];
-            $test[$key]['vysota_shin'] = $data[3];
-            $test[$key]['diametr_shin'] = $data[4];
-            $test[$key]['indeksy_nagruzki'] = $data[5];
-            $test[$key]['indeksy_skorosti'] = $data[6];
+            preg_match('#Шины (.*) \D*(\d+)/(\d+) R(\d+) \d+/(\d+)([\D]+)#', $product->Name, $data);
+            if (!$data) {
+                var_dump($product->Name);
+                var_dump($data);
+            } else {
+                echo '+++'.$product->Name;
+                $test[$key]['shirina_shin'] = $data[2];
+                $test[$key]['vysota_shin'] = $data[3];
+                $test[$key]['diametr_shin'] = $data[4];
+                $test[$key]['indeksy_nagruzki'] = $data[5];
+                $test[$key]['indeksy_skorosti'] = $data[6];
+                $product->shirina_shin = $data[2];
+                $product->vysota_shin = $data[3];
+                $product->diametr_shin = $data[4];
+                $product->indeksy_nagruzki = $data[5];
+                $product->indeksy_skorosti = $data[6];
+                $product->save();
+            }
+            //dd($test, $product);
         }
-        dd($test);
     }
 }
