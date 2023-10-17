@@ -14,20 +14,7 @@ class SearchController extends Controller
 
     public function updateTireSizes(Request $request) {
 
-        $req = $this->getData($request);
-
-        $diameters = $req['diameters'];
-
-        $seasons = $req['seasons'];
-
-        $data = Product::select(['diametr_shin', 'sezony', 'shirina_shin', 'vysota_shin']);
-
-        if (count($diameters)) $data->whereIn('diametr_shin', $diameters);
-        if (count($seasons)) $data->whereIn('sezony', $seasons);
-
-        $data->where('shirina_shin', '!=', null)
-            ->where('vysota_shin', '!=', null)
-            ->distinct()->get();
+        $data = $this->getData($request);
 
         $shirina_shin = [];
         foreach ($data->pluck('shirina_shin', 'shirina_shin') as $shirina) {
@@ -52,23 +39,14 @@ class SearchController extends Controller
 
     public function getTires(Request $request) {
 
-        $req = $this->getData($request);
+        $data = $this->getData($request, ['Name', 'Price', 'Id']);
 
-        $data = Product::select(['diametr_shin', 'sezony', 'shirina_shin', 'vysota_shin', 'Name', 'Price', 'Id']);
-
-        if (count($req['diameters'])) $data->whereIn('diametr_shin', $req['diameters']);
-        if (count($req['seasons'])) $data->whereIn('sezony', $req['seasons']);
-        if ($req['width'] !== 'Выбрать') $data->where('shirina_shin', $req['width']);
-        if ($req['height'] !== 'Выбрать') $data->where('vysota_shin', $req['height']);
-
-        $data->where('shirina_shin', '!=', null)
-            ->where('vysota_shin', '!=', null)
-            ->where('Price', '>', 0);
-
-        return response()->json($data->select(['Name', 'Price', 'Id'])->get(), 200);
+        return response()->json($data->select(['Name', 'Price', 'Id'])->paginate(15, '', '', ''), 200);
     }
 
-    private function getData($request) {
+    private function getData($request, $addSelect = []) {
+
+        $data = Product::select(['diametr_shin', 'sezony', 'shirina_shin', 'vysota_shin']);
 
         $diameters = [];
         foreach ($request->diameters as $key => $diameter) {
@@ -80,6 +58,16 @@ class SearchController extends Controller
             if($season){ $seasons[] = $key2; }
         }
 
-        return ['diameters'=> $diameters, 'seasons' => $seasons, 'width' => $request->width, 'height' => $request->height];
+        if (count($addSelect)) $data->addSelect($addSelect);
+        if (count($diameters)) $data->whereIn('diametr_shin', $diameters);
+        if (count($seasons)) $data->whereIn('sezony', $seasons);
+        if ($request->width !== 'Выбрать') $data->where('shirina_shin', $request->width);
+        if ($request->height !== 'Выбрать') $data->where('vysota_shin', $request->height);
+
+        $data->where('shirina_shin', '!=', null)
+            ->where('vysota_shin', '!=', null)
+            ->where('Price', '>', 0);
+
+        return $data;
     }
 }

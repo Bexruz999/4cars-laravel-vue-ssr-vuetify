@@ -14,7 +14,8 @@
         "rap2hpoutre/fast-excel": "^5.3",
         "spatie/laravel-server-side-rendering": "^1.4",
         "tcg/voyager": "^1.6",
-        "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.3"
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.3",
+        "ext-mysqli": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -1,6 +1,6 @@
 <script setup>
 
-import {onMounted, ref} from "vue";
+import {onMounted, onUpdated, ref, watch} from "vue";
 
 const tab = ref('one');
 const tab2 = ref('one');
@@ -15,6 +15,11 @@ const filter = ref({
     'height': 'Выбрать'
 });
 
+let nextpage = ref(1);
+let lastpage = ref(1);
+const loading = ref(false);
+const page = ref(true);
+
 onMounted(() => {
 
     getSizes('get-sizes', false, (data) => {
@@ -22,13 +27,11 @@ onMounted(() => {
         height.value = data.height;
     });
 
-})
+});
 
 const getSizes = function (url, data, callback) {
 
-    axios.post(`/api/${url}`, data)
-        .then((response) => { callback(response.data) })
-        .catch( () => {});
+    axios.post(`/api/${url}`, data).then((response) => { callback(response.data) });
 }
 
 const setData = function (toggle, index, name) {
@@ -36,22 +39,32 @@ const setData = function (toggle, index, name) {
     filter.value[name][index] = !filter.value[name][index]
     updateSizes();
 }
+
 const getForSize =  function () {
 
-    console.log(filter.value, 'text')
-    axios.post('/api/get-tires', filter.value)
-        .then((response) => {
-            console.log(response.data)
-            const content = document.getElementById('content');
-            content.innerHTML = '';
-            data.value = response.data;
-        })
-        .catch( (error) => {});
+    if ((nextpage.value <= lastpage.value)) {
+        loading.value = true;
+        if (page.value) {
+            page.value = false;
+            setLoadingObserver()
+        }
+        axios.post( `/api/get-tires?=${nextpage.value}`, filter.value)
+            .then((response) => {document.getElementById('content').innerHTML = '';
+                data.value.push(...response.data.data);
+                nextpage.value++;
+                lastpage.value = response.data.last_page;
+                console.log(response.data)
+            }).catch(() => {loading.value = false});
+    } else {
+        console.log(nextpage.value <= lastpage.value)
+    }
 }
 
 const clearForm = function () {
-    for (const key in filter.value.seasons)     { filter.value.seasons[key] = false; }
-    for (const k in filter.value.diameters)     { filter.value.diameters[k] = false; }
+    for (const key in filter.value.seasons) { filter.value.seasons[key] = false; }
+    for (const k in filter.value.diameters) { filter.value.diameters[k] = false; }
+    filter.value.width = 'Выбрать';
+    filter.value.height = 'Выбрать';
 
     getSizes('get-sizes', false, (data) => {
         width.value = data.width;
@@ -59,13 +72,51 @@ const clearForm = function () {
     });
 }
 
-const updateSizes = function () {
-
-    getSizes('update-tire' , filter.value, (data) => {
-        console.log(data);
-        width.value = data.width;
-        height.value = data.height;
+const updateSizes = () => getSizes('update-tire' , filter.value, (res) => {
+        width.value = res.width;
+        height.value = res.height;
+        lastpage.value = 1;
+        nextpage.value = 1;
+        data.value = [];
     });
+
+
+
+const setLoadingObserver = function () {
+    const loadingObserver = new IntersectionObserver(
+        entries => {
+        entries.forEach(entry => {
+            if (nextpage.value > lastpage.value) {
+               loading.value = false
+            }
+            setTimeout(() => {
+                getForSize()
+            }, 500)
+        })
+    });
+
+    if (loading.value) {
+        setTimeout(() => {
+            loadingObserver.observe(document.querySelector('.posts__loading'))
+        }, 500)
+
+    }
+}
+
+const setPostsObserver = function () {
+    /* создаём наблюдение */
+    const postsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => { /* для каждого элемента */
+            if (entry.isIntersecting) { /* если элемент в видимой области браузера */
+                entry.target.classList.add('post_active') /* добавляем активный класс наблюдаемому элементу, то есть посту */
+                observer.unobserve(entry.target); /* и отключаем наблюдение за этим постом */
+            }
+        })
+    });
+
+    document.querySelectorAll('.posts__post:not(.post_active)').forEach(post => { /* получаем только неактивные посты */
+        postsObserver.observe(post) /* указываем, что наблюдаем за ними */
+    })
 }
 
 </script>
@@ -242,12 +293,109 @@ const updateSizes = function () {
                         </div>
                     </div>
                 </div>
-                <a href="/tires" class="selection-cart__all">Все товары</a>
             </div>
         </div>
+    </div>
+
+    <div class="posts__loading" v-if="loading"> <!-- добавили условный атрибут v-if -->
+        <svg viewBox="25 25 50 50">
+            <circle cx="50" cy="50" r="20"></circle>
+        </svg>
     </div>
 </template>
 
 <style scoped>
 
+.posts__loading {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+svg {
+    width: 3.75em;
+    transform-origin: center;
+    animation: rotate 2s linear infinite;
+}
+circle {
+    fill: none;
+    stroke: black;
+    stroke-width: 4;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+}
+@-moz-keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@-o-keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@-moz-keyframes dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 200;
+        stroke-dashoffset: -35px;
+    }
+    100% {
+        stroke-dashoffset: -125px;
+    }
+}
+@-webkit-keyframes dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 200;
+        stroke-dashoffset: -35px;
+    }
+    100% {
+        stroke-dashoffset: -125px;
+    }
+}
+@-o-keyframes dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 200;
+        stroke-dashoffset: -35px;
+    }
+    100% {
+        stroke-dashoffset: -125px;
+    }
+}
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 200;
+        stroke-dashoffset: -35px;
+    }
+    100% {
+        stroke-dashoffset: -125px;
+    }
+}
 </style>
