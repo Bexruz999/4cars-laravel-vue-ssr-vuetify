@@ -54,13 +54,19 @@ class SearchController extends Controller
         }
 
         $seasons = [];
+        $ships = [];
         foreach ($request->seasons as $key2 => $season) {
-            if($season){ $seasons[] = $key2; }
+            if ($season) {
+                if($key2 === 'Летние' || $key2 === 'Всесезонные'){ $seasons[] = $key2; }
+                if($key2 === 'Зимние с шипами'){ $ships[] = 'Да'; $seasons[] = 'Зимние';}
+                if($key2 === 'Зимние без шипов'){ $ships[] = null; $seasons[] = 'Зимние';}
+            }
         }
 
         if (count($addSelect)) $data->addSelect($addSelect);
-        if (count($diameters)) $data->whereIn('diametr_shin', $diameters);
         if (count($seasons)) $data->whereIn('sezony', $seasons);
+        if (count($ships)) $data->whereIn('shipy', $ships);
+        if (count($diameters)) $data->whereIn('diametr_shin', $diameters);
         if ($request->width !== 'Выбрать') $data->where('shirina_shin', $request->width);
         if ($request->height !== 'Выбрать') $data->where('vysota_shin', $request->height);
 

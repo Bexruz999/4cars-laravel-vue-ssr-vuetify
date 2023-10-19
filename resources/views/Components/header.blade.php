@@ -34,10 +34,6 @@
                     <mymenu v-slot="scope">
                         <router-link to="/" @click.prevent="scope.btn('/')">
                             <img src="{{ asset('assets/images/icons/photo-icon.png') }}" alt=""/>
-                            <span>Список желаний</span>
-                        </router-link>
-                        <router-link to="/" @click.prevent="scope.btn('/')">
-                            <img src="{{ asset('assets/images/icons/photo-icon.png') }}" alt=""/>
                             <span>Корзина</span>
                             <span>0тг</span>
                             <span class="header-buttons__count">0</span>
@@ -139,4 +135,3 @@
         </div>
     </div>
 </div>
-

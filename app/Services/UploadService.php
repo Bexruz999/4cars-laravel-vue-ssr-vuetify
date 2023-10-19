@@ -213,4 +213,24 @@ class UploadService
             //dd($test, $product);
         }
     }
+
+    public function generate2 () {
+
+        $products = Product::select(['Id', 'Name', 'shirina_shin', 'vysota_shin', 'diametr_shin', 'indeksy_nagruzki', 'indeksy_skorosti', 'ShortDescription'])
+            ->where('vidy_nomenklatury', 'Диски')
+            ->get();
+
+
+        $test = [];
+        foreach ($products as $key => $product) {
+
+            $len = strlen($product->ShortDescription) > 15;
+            $short = str_contains($product->ShortDescription, 'Зимняя шипованная шина') && $len;
+
+            if ($short) {
+                $product->ShortDescription = 'ДА';
+                $product->save();
+            }
+        }
+    }
 }

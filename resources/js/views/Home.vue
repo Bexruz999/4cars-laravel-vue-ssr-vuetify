@@ -48,8 +48,10 @@ const getForSize =  function () {
             page.value = false;
             setLoadingObserver()
         }
+        //?=${nextpage.value}
         axios.post( `/api/get-tires?=${nextpage.value}`, filter.value)
-            .then((response) => {document.getElementById('content').innerHTML = '';
+            .then((response) => {
+                document.getElementById('content').style.display = 'none'
                 data.value.push(...response.data.data);
                 nextpage.value++;
                 lastpage.value = response.data.last_page;
@@ -65,7 +67,12 @@ const clearForm = function () {
     for (const k in filter.value.diameters) { filter.value.diameters[k] = false; }
     filter.value.width = 'Выбрать';
     filter.value.height = 'Выбрать';
-
+    loading.value = false;
+    page.value = true;
+    document.getElementById('content').style.display = 'block';
+    data.value = [];
+    lastpage.value = 1;
+    nextpage.value = 1;
     getSizes('get-sizes', false, (data) => {
         width.value = data.width;
         height.value = data.height;
