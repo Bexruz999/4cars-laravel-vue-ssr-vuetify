@@ -233,4 +233,15 @@ class UploadService
             }
         }
     }
+
+    public function import () {
+        function usersGenerator() {
+            foreach (Product::cursor() as $product) {
+                yield $product;
+            }
+        }
+
+        (new FastExcel(usersGenerator()))->export('test.xlsx');
+    }
+
 }
