@@ -8,7 +8,7 @@
         <div class="products-item__content-price">{{ $product->Price }} тг</div>
         <div>
             <a href="#" class="products-item__content-buy mr-1">Купить</a>
-            <a href="#" class="products-item__content-korzina">В корзину</a>
+            <button onclick="addToBasket({{ $product->Id }})" class="products-item__content-korzina">В корзину</button>
         </div>
 
         <a href="#" class="products-item__content-rasrochka">Купить в рассрочку</a>
