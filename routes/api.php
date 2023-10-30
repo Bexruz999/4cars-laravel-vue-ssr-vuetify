@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,4 @@ Route::post('/test', function (Request $request) {return $request;});
 Route::post('/update-tire', [SearchController::class, 'updateTireSizes']);
 Route::post('/get-sizes', [SearchController::class, 'getTireSizes']);
 Route::post('/get-tires', [SearchController::class, 'getTires']);
+Route::get('/add_basket/{id}', [UserController::class, 'addToBasket']);

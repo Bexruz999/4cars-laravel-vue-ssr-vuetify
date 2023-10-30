@@ -247,7 +247,7 @@ class UploadService
     public function upload3() {
         $collection = (new FastExcel)->import('E:\Programs\OSPanel\domains\4cars\1111.xlsx');
 
-        foreach ($collection as $item) {
+        foreach ($collection as $key => $item) {
             $product = Product::where('Name', $item['Name'])->first();
             if ($product) {
                 $product->indeksy_nagruzki = $item['Indeksy nagruzki'];
@@ -258,8 +258,19 @@ class UploadService
                 $product->sezony = $item['Sezony'];
                 $product->razmery_shiny = $item['Razmery shiny'];
                 $product->shirina_shin = $item['Shirina'];
-                $product->vysota_shin = $item['Vysota'];
                 $product->modeli = $item['Modeli'];
+                $product->vysota_shin = $item['Vysota'];
+                $product->shipy = $item['Shipy'];
+                $product->usilennye = $item['Usilennye'];
+                $product->runflat = $item['Run flat'];
+                $product->nepublikovat = $item['Nepublikovat'];
+                $product->otverstiya = $item['Otverstiya'];
+                $product->rasstoyaniya = $item['Rasstoyaniya'];
+                $product->kolichestvo_boltov = $item['Kolichestvo boltov'];
+                $product->cveta = $item['Cveta'];
+                $product->save();
+                echo $key . $product->id . '
+';
             }
         }
 
