@@ -244,4 +244,26 @@ class UploadService
         (new FastExcel(usersGenerator()))->export('test.xlsx');
     }
 
+    public function upload3() {
+        $collection = (new FastExcel)->import('E:\Programs\OSPanel\domains\4cars\1111.xlsx');
+
+        foreach ($collection as $item) {
+            $product = Product::where('Name', $item['Name'])->first();
+            if ($product) {
+                $product->indeksy_nagruzki = $item['Indeksy nagruzki'];
+                $product->vidy_nomenklatury = $item['Vidy nomenklatury'];
+                $product->diametr_shin = $item['Diametr'];
+                $product->indeksy_skorosti = $item['Indeksy skorosti'];
+                $product->brendy = $item['Brendy'];
+                $product->sezony = $item['Sezony'];
+                $product->razmery_shiny = $item['Razmery shiny'];
+                $product->shirina_shin = $item['Shirina'];
+                $product->vysota_shin = $item['Vysota'];
+                $product->modeli = $item['Modeli'];
+            }
+        }
+
+        $a = $collection;
+    }
+
 }
