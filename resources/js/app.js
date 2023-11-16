@@ -50,10 +50,21 @@ const router = createRouter({
 const app = createApp({}).use(vuetify).use(router);
 const contentName = ref('collback');
 const contentData = ref('');
+
+let a = [];
 function updateContent(url) {
     window.axios.get(url)
         .then((response) => {
             changeContent(response)
+        })
+        .catch( (error) => {});
+}
+function updateBasket(id = 0) {
+
+    window.axios.get('/api/add_basket/' + id)
+        .then((response) => {
+            document.getElementById('basketCount').innerText = Object.keys(response.data).length;
+            console.log(response.data)
         })
         .catch( (error) => {});
 }
@@ -84,6 +95,7 @@ function changeContent(response) {
 }
 
 app.provide('content', {updateContent, contentName, contentData});
+app.provide('basket',  {updateBasket});
 
 app.component('wrappercomponent', wrapperComponent);
 app.component('content', Content);

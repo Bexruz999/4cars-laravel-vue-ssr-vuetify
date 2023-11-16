@@ -32,11 +32,11 @@
                         <span>Личный кабинет</span>
                     </a>
                     <mymenu v-slot="scope">
-                        <router-link to="/" @click.prevent="scope.btn('/')">
-                            <img src="{{ asset('assets/images/icons/photo-icon.png') }}" alt=""/>
+                        <router-link to="/korzina" @click.prevent="scope.btn('/korzina')">
+                            <img src="{{ asset('assets/images/icons/basket.svg') }}" alt=""/>
                             <span>Корзина</span>
                             <span>0тг</span>
-                            <span class="header-buttons__count">0</span>
+                            <span id="basketCount" class="header-buttons__count"></span>
                         </router-link>
                     </mymenu>
                 </div>

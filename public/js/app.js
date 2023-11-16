@@ -19853,9 +19853,17 @@ var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_11__.createRouter)({
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({}).use(vuetify).use(router);
 var contentName = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('collback');
 var contentData = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
+var a = [];
 function updateContent(url) {
   window.axios.get(url).then(function (response) {
     changeContent(response);
+  })["catch"](function (error) {});
+}
+function updateBasket() {
+  var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  window.axios.get('/api/add_basket/' + id).then(function (response) {
+    document.getElementById('basketCount').innerText = Object.keys(response.data).length;
+    console.log(response.data);
   })["catch"](function (error) {});
 }
 function changeContent(response) {
@@ -19886,6 +19894,9 @@ app.provide('content', {
   updateContent: updateContent,
   contentName: contentName,
   contentData: contentData
+});
+app.provide('basket', {
+  updateBasket: updateBasket
 });
 app.component('wrappercomponent', _components_wrapperComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
 app.component('content', _components_content_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);

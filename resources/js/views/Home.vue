@@ -1,7 +1,8 @@
 <script setup>
 
-import {onMounted, onUpdated, ref, watch} from "vue";
+import {inject, onMounted, onUpdated, ref, watch} from "vue";
 
+const {updateBasket} = inject('basket')
 const tab = ref('one');
 const tab2 = ref('one');
 const data = ref([]);
@@ -26,7 +27,7 @@ onMounted(() => {
         width.value = data.width;
         height.value = data.height;
     });
-
+    updateBasket();
 });
 
 const getSizes = function (url, data, callback) {
@@ -88,7 +89,6 @@ const updateSizes = () => getSizes('update-tire' , filter.value, (res) => {
     });
 
 
-
 const setLoadingObserver = function () {
     const loadingObserver = new IntersectionObserver(
         entries => {
@@ -106,7 +106,6 @@ const setLoadingObserver = function () {
         setTimeout(() => {
             loadingObserver.observe(document.querySelector('.posts__loading'))
         }, 500)
-
     }
 }
 
@@ -293,7 +292,7 @@ const setPostsObserver = function () {
                             <div class="products-item__content-price">{{ item.Price }} тг</div>
                             <div>
                                 <a href="#" class="products-item__content-buy mr-1">Купить</a>
-                                <a href="#" class="products-item__content-korzina">В корзину</a>
+                                <button @click="updateBasket(item.Id)" class="products-item__content-korzina">В корзину</button>
                             </div>
 
                             <a href="#" class="products-item__content-rasrochka">Купить в рассрочку</a>

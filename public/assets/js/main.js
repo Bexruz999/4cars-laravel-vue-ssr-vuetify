@@ -40,12 +40,10 @@ function stickyHeader() {
     headerMobile.classList.remove('sticky');
   }
 }
-let basket = [];
-    function addToBasket(id) {
+function addToBasket(id) {
     console.log(id);
     window.axios.get('/api/add_basket/' + id)
         .then((response) => {
-            basket = response.data;
             console.log(response.data)
         })
         .catch( (error) => {});

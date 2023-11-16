@@ -78,13 +78,15 @@ class UserController extends Controller
 
         $basket = $request->session()->get('basket', []);
 
-        if (!count($basket)) {
-            $basket = [$id => 1];
-        } else if(array_key_exists($id, $basket)) {
-            $basket[$id] = ++$basket[$id];
-        } else { $basket[$id] = 1; }
+        if ($id != 0) {
+            if (!count($basket)) {
+                $basket = [$id => 1];
+            } else if(array_key_exists($id, $basket)) {
+                $basket[$id] = ++$basket[$id];
+            } else { $basket[$id] = 1; }
 
-         $request->session()->put('basket', $basket);
+            $request->session()->put('basket', $basket);
+        }
 
         return $basket;
     }
