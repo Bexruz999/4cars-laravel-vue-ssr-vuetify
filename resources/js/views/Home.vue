@@ -27,7 +27,6 @@ onMounted(() => {
         width.value = data.width;
         height.value = data.height;
     });
-    updateBasket();
 });
 
 const getSizes = function (url, data, callback) {

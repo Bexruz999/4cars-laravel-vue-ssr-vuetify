@@ -2,6 +2,7 @@ require('./bootstrap');
 
 import {createApp, ref} from 'vue';
 import Collback from './components/Callback.vue';
+import App from './app.vue';
 import Search from './components/Search.vue';
 import FormMask from "./components/FormMask.vue";
 import MyMenu from './components/menu.vue';
@@ -47,7 +48,7 @@ const router = createRouter({
     routes, // short for `routes: routes`
 })
 
-const app = createApp({}).use(vuetify).use(router);
+const app = createApp().use(vuetify).use(router);
 const contentName = ref('collback');
 const contentData = ref('');
 
@@ -63,12 +64,15 @@ function updateBasket(id = 0) {
 
     window.axios.get('/api/add_basket/' + id)
         .then((response) => {
-            document.getElementById('basketCount').innerText = Object.keys(response.data).length;
+            document.getElementById('basketCount').innerText = sum(response.data);
             console.log(response.data)
         })
         .catch( (error) => {});
 }
 
+
+
+updateBasket();
 function changeContent(response) {
     const content = document.getElementById('content');
     const title = document.getElementById('title');

@@ -23,19 +23,16 @@
                         <a href="https://2gis.kz/almaty/firm/70000001040222127/76.914359%2C43.305155?m=76.91509%2C43.305034%2F18.43%2Fr%2F3.96" target="_blank">г. Алматы ул. <br/>Казыбаева, 270а</a>
                     </div>
 
-                    <collback title="Заказать звонок" btn_class="header-contact__btn"></collback>
+                    <collback title="Заказать звонок" btn_class="header-contact__btn">0</collback>
                 </div>
 
                 <div class="col-xl-3 col-12 header-buttons">
                     <a href="/user/history">
                         <img src="{{ Voyager::image(setting('user.default-avatar')) }}" alt=""/>
-                        <span>Личный кабинет</span>
                     </a>
                     <mymenu v-slot="scope">
                         <router-link to="/korzina" @click.prevent="scope.btn('/korzina')">
                             <img src="{{ asset('assets/images/icons/basket.svg') }}" alt=""/>
-                            <span>Корзина</span>
-                            <span>0тг</span>
                             <span id="basketCount" class="header-buttons__count"></span>
                         </router-link>
                     </mymenu>
