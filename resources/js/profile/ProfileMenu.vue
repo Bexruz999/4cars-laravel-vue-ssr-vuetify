@@ -4,7 +4,8 @@ const profile_menu = [
     {'slug': '/user/history', 'img': 'history-icon.png', 'title': 'История заказов'},
     {'slug': '/user/basket', 'img': 'basket-icon.png', 'title': 'Корзина'},
     {'slug': '/user/payment', 'img': 'card-icon.png', 'title': 'Мои карты'},
-    {'slug': '/user/profile', 'img': 'setting-icon.png', 'title': 'Настройки'}
+    {'slug': '/user/profile', 'img': 'setting-icon.png', 'title': 'Настройки'},
+    {'slug': '/logout', 'img': 'setting-icon.png', 'title': 'Выход'}
 ];
 
 const pathname = window.location.pathname;

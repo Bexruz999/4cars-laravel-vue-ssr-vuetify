@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user'],function () {
 #region registration
 Route::match(['GET', 'POST'], '/login', [UserController::class, 'login'])->middleware('guest')->name('login');
 Route::match(['GET', 'POST'], '/register', [UserController::class, 'register'])->middleware('guest')->name('register');
+Route::match(['GET', 'POST'], '/logout', [UserController::class, 'logout'])->middleware('auth')->name('register');
 #region registration
 
 

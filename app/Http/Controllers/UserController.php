@@ -6,6 +6,7 @@ use App\Models\Basket;
 use App\Models\Page;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
+use JetBrains\PhpStorm\NoReturn;
 
 class UserController extends Controller
 {
@@ -51,6 +52,11 @@ class UserController extends Controller
 
     }
 
+    public function logout() {
+        auth()->logout();
+        return redirect('logout');
+    }
+
     public function profile(Request $request, $slug) {
 
         $page = Page::where('slug', "user/$slug")->where('status', 'ACTIVE')->first();
@@ -89,5 +95,10 @@ class UserController extends Controller
         }
 
         return $basket;
+    }
+
+    #[NoReturn] public function checkout(Request $request) {
+        dd(auth()->user());
+        return redirect('/');
     }
 }

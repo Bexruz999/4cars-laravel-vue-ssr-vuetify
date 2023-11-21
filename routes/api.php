@@ -26,3 +26,4 @@ Route::post('/update-tire', [SearchController::class, 'updateTireSizes']);
 Route::post('/get-sizes', [SearchController::class, 'getTireSizes']);
 Route::post('/get-tires', [SearchController::class, 'getTires']);
 Route::get('/add_basket/{id}', [UserController::class, 'addToBasket']);
+Route::post('/checkout', [UserController::class, 'checkout']);

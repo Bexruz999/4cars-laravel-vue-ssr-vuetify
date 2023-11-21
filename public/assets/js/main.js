@@ -44,6 +44,7 @@ function addToBasket(id) {
     console.log(id);
     window.axios.get('/api/add_basket/' + id)
         .then((response) => {
+            document.getElementById('basketCount').innerText = sum(response.data)
             console.log(response.data)
         })
         .catch( (error) => {});
@@ -107,7 +108,7 @@ function validateForm() {
     x = document.getElementsByClassName("tab");
     y = x[currentTab].getElementsByTagName("input");
     // A loop that checks every input field in the current tab:
-    for (i = 0; i < y.length; i++) {
+    /*for (i = 0; i < y.length; i++) {
         // If a field is empty...
         if (y[i].value == "") {
             // add an "invalid" class to the field:
@@ -115,7 +116,7 @@ function validateForm() {
             // and set the current valid status to false:
             valid = false;
         }
-    }
+    }*/
     // If the valid status is true, mark the step as finished and valid:
     if (valid) {
         document.getElementsByClassName("step")[currentTab].className += " finish";
@@ -131,5 +132,12 @@ function fixStepIndicator(n) {
     }
     //... and adds the "active" class to the current step:
     x[n].className += " active";
+}
+
+function addaddress(n) {
+    let a = document.getElementById('address');
+    a.value = 'test address main js 138 ';
+    nextPrev(n)
+    console.log(a)
 }
 //</editor-fold>

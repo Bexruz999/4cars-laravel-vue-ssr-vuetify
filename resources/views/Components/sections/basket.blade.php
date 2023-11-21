@@ -13,10 +13,11 @@
 
             @foreach($products as $product)
                 <div class="basket-products row">
-                    <p class="col-7">{{ $product->Name }}</p>
-                    <p class="col-2">{{ str_replace('.0000', '', $product->Price) }}</p>
-                    <p class="col-2">{{ str_replace('.0000', '', $product->Price) * Arr::get($basket, $product->Id) }} </p>
-                    <input class="col-1" name="count" value="{{ Arr::get($basket, $product->Id) }}">
+                    <p class="col-7"> {{ $product->Name }}</p>
+                    <p class="col-2"> {{ str_replace('.0000', '', $product->Price) }}</p>
+                    <p class="col-2"> {{ str_replace('.0000', '', $product->Price) * Arr::get($basket, $product->Id) }} </p>
+                    <p class="col-1"> {{ Arr::get($basket, $product->Id) }} </p>
+                    {{--<input class="col-1" name="count" value="{{ Arr::get($basket, $product->Id) }}">--}}
                 </div>
             @endforeach
 
