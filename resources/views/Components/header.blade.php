@@ -31,10 +31,10 @@
                         <img src="{{ Voyager::image(setting('user.default-avatar')) }}" alt=""/>
                     </a>
                     <mymenu v-slot="scope">
-                        <router-link to="/korzina" @click.prevent="scope.btn('/korzina')">
+                        <a href="/korzina">
                             <img src="{{ asset('assets/images/icons/basket.svg') }}" alt=""/>
                             <span id="basketCount" class="header-buttons__count"></span>
-                        </router-link>
+                        </a>
                     </mymenu>
                 </div>
             </div>
@@ -127,7 +127,7 @@
 
         <h1 id="title" class="introMain-title">{!! $page->title !!}</h1>
         <div id="s404" style="display: none">
-            <a class="intro-404-link text-lg-center" href="../index.html">Вернуться на главную страницу</a>
+            <a class="intro-404-link text-lg-center" href="../">Вернуться на главную страницу</a>
             <img class="intro-404-img" src="/assets/images/404.png" alt="">
         </div>
     </div>

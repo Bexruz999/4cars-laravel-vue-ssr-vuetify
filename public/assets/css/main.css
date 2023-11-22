@@ -222,14 +222,25 @@ input.invalid {
     margin: 0;
 }
 
-/*.basket-products input {
-    background-color: white;
-    border: 1px solid #0a6dbf;
+.payment-confirm {
+    border: 1px solid #000;
     border-radius: 5px;
-    padding: 5px;
-    margin-right: 10px;
-    max-width: 40px;
-}*/
+}
+
+.payment-confirm-head {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    padding: 10px;
+    background-color: #0a6dbf;
+}
+
+.payment-confirm-content {
+    padding: 15px 0;
+    text-align: center;
+    min-height: 250px;
+}
 
 /* Make circles that indicate the steps of the form: */
 .step {

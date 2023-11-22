@@ -1,4 +1,4 @@
-<div class="selection">
+<div class="selection" id="home-products">
     <div class="container-lg">
         <div class="row">
             <div class="products-container mb-lg-5 mb-3 d-flex justify-content-lg-center justify-content-around align-items-center flex-wrap">

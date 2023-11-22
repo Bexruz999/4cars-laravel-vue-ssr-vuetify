@@ -15,18 +15,82 @@
                     <img class="step-img" src="{{ asset('/assets/images/icons/truck-delivered-icon.svg') }}">
                 </span>
                 <span class="step">
-                    <img class="step-img" src="{{ asset('/assets/images/icons/checklist-svgrepo-com.svg') }}">
-                </span>
-                <span class="step">
                     <img class="step-img" src="{{ asset('/assets/images/icons/payment-method-svgrepo-com.svg') }}">
                 </span>
+                <span class="step">
+                    <img class="step-img" src="{{ asset('/assets/images/icons/checklist-svgrepo-com.svg') }}">
+                </span>
+            </div>
+
+            {{-- dostavka --}}
+            <div class="tab">
+                <h4>Подтвердите ваш заказ :</h4>
+                <br>
+
+                <div class="row">
+
+                    <div class="col-6">
+
+                        <div class="payment-confirm">
+
+                            <div class="payment-confirm-head">Покупатель</div>
+
+                            <div class="payment-confirm-content">
+
+                                <p><b>test test</b></p>
+
+                                <p><b>E-mail:</b> 6so7a48mx@mozmail.com</p>
+                                <p><b>Телефон:</b> 68742678/719</p>
+
+                                <p><b>Оплата</b></p>
+
+                                <p>Способ оплаты: KKB</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-6">
+
+                        <div class="payment-confirm">
+
+                            <div class="payment-confirm-head">Адрес пункта выдачи</div>
+
+                            <div class="payment-confirm-content">
+
+                                <br>
+                                <br>
+
+                                <p>ул. Казыбаева, 270а Алматы, 050000 Kazakhstan</p>
+
+                                <p><b>Доставка</b></p>
+
+                                <p>Способ доставки: Пункт выдачи: г. Алматы </p>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-8">
+                        
+                    </div>
+                </div>
+
+                <div class="basketbuttons">
+                    <button class="header-contact__btn" type="button" id="nextBtn" onclick="nextPrev(1)">Оформить
+                    </button>
+                    <button class="header-contact__btn" type="button" id="prevBtn" onclick="nextPrev(-1)">Назад</button>
+                </div>
             </div>
 
             <!-- One "tab" for each step in the form: -->
             <div class="tab">
                 <x-sections.basket/>
                 <div class="basketbuttons">
-                    <button class="header-contact__btn" type="button" id="nextBtn" onclick="nextPrev(1)">ОФОРМИТЬ ЗАКАЗ</button>
+                    <button class="header-contact__btn" type="button" id="nextBtn" onclick="nextPrev(1)">ОФОРМИТЬ
+                        ЗАКАЗ
+                    </button>
                 </div>
             </div>
 
@@ -66,18 +130,13 @@
                 </div>
                 <div class="basketbuttons">
                     <div class="d-flex">
-                        <button class="header-contact__btn" type="button" id="nextBtn" onclick="addaddress(1)">Самовывоз</button>
-                        <button class="header-contact__btn ml-5" type="button" id="nextBtn" onclick="nextPrev(1)">Доставка</button>
+                        <button class="header-contact__btn" type="button" id="nextBtn" onclick="addaddress(1)">
+                            Самовывоз
+                        </button>
+                        <button class="header-contact__btn ml-5" type="button" id="nextBtn" onclick="nextPrev(1)">
+                            Доставка
+                        </button>
                     </div>
-                    <button class="header-contact__btn" type="button" id="prevBtn" onclick="nextPrev(-1)">Назад</button>
-                </div>
-            </div>
-
-            {{-- dostavka --}}
-            <div class="tab">Адрес Доставка:
-
-                <div class="basketbuttons">
-                    <button class="header-contact__btn" type="button" id="nextBtn" onclick="nextPrev(1)">Далее</button>
                     <button class="header-contact__btn" type="button" id="prevBtn" onclick="nextPrev(-1)">Назад</button>
                 </div>
             </div>
@@ -94,12 +153,14 @@
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                         <label class="form-check-label ml-4" for="flexRadioDefault1">
                             <b>KKB</b>
-                            <p>Оплата при помощи платежных карт Visa, VisaElectron, MasterCard или Maestro. Прямо сейчас.</p>
+                            <p>Оплата при помощи платежных карт Visa, VisaElectron, MasterCard или Maestro. Прямо
+                                сейчас.</p>
                         </label>
                     </div>
 
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                               checked>
                         <label class="form-check-label ml-4" for="flexRadioDefault2">
                             <b>Оплата в магазине</b>
                             <p>Оплата в кассу точки самовывоза</p>
@@ -109,10 +170,11 @@
                 </div>
 
                 <div class="basketbuttons">
-                    <button class="header-contact__btn" type="button" id="nextBtn" onclick="nextPrev(1)">Оформить</button>
+                    <button class="header-contact__btn" type="button" id="nextBtn" onclick="nextPrev(1)">Далее</button>
                     <button class="header-contact__btn" type="button" id="prevBtn" onclick="nextPrev(-1)">Назад</button>
                 </div>
             </div>
+
 
             {{-- podtverdit --}}
             {{--<div class="tab">
