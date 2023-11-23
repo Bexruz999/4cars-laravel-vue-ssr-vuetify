@@ -135,9 +135,8 @@ function fixStepIndicator(n) {
 }
 
 function addaddress(n) {
-    let a = document.getElementById('address');
-    a.value = 'test address main js 138 ';
-    nextPrev(n)
-    console.log(a)
+    console.log(document.getElementById('address').value = 'test address main js 138');
+    document.getElementById('address2').innerText = 'test address main js 138';
+    nextPrev(n);
 }
 //</editor-fold>
