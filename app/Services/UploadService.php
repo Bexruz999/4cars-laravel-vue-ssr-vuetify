@@ -277,4 +277,15 @@ class UploadService
         $a = $collection;
     }
 
+    public function upload_img() {
+        $collection = (new FastExcel)->import('E:\Programs\OSPanel\domains\4cars\1111.xlsx');
+
+        foreach ($collection as $key => $item) {
+            $product = Product::where('Name', $item['Name'])->first();
+            if ($product) {
+                $product->image = '/storage/images/upload/' . $item['ID'] . '_1.jpg';
+                $product->save();
+            }
+        }
+    }
 }

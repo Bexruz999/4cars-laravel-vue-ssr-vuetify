@@ -1,6 +1,6 @@
 <div class="products-item">
     <div class="products-item__img">
-        <img src="{{ asset('assets/images/product-img.png') }}" alt="">
+        <img class="product_img" src="{{ $product->image }}" alt="{{ $product->Name }}">
     </div>
     <div class="products-item__content">
         <div class="products-item__content-title">{{ $product->Name }}</div>

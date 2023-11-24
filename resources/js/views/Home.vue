@@ -284,7 +284,7 @@ const setPostsObserver = function () {
                 <div class="products-container mb-lg-5 mb-3 d-flex justify-content-lg-center justify-content-around align-items-center flex-wrap">
                     <div v-for="item in data" class="products-item">
                         <div class="products-item__img">
-                            <img src="http://127.0.0.1:8000/assets/images/product-img.png" alt="tseee">
+                            <img class="product_img" :src="item.image" :alt="item.Name">
                         </div>
                         <div class="products-item__content">
                             <div class="products-item__content-title">{{ item.Name }}</div>

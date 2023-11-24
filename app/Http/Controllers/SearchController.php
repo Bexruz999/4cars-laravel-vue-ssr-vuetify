@@ -39,9 +39,9 @@ class SearchController extends Controller
 
     public function getTires(Request $request) {
 
-        $data = $this->getData($request, ['Name', 'Price', 'Id']);
+        $data = $this->getData($request, ['Name', 'Price', 'Id', 'image']);
 
-        return response()->json($data->select(['Name', 'Price', 'Id'])->paginate(15, '', '', ''), 200);
+        return response()->json($data->select(['Name', 'Price', 'Id', 'image'])->paginate(15, '', '', ''), 200);
     }
 
     private function getData($request, $addSelect = []) {

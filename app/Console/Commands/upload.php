@@ -28,7 +28,8 @@ class upload extends Command
      */
     public function handle(UploadService $uploadService)
     {
-        $uploadService->upload3();
+        $uploadService->upload_img();
+        //$uploadService->upload3();
         //$uploadService->generate2();
         //$uploadService->import();
     }
